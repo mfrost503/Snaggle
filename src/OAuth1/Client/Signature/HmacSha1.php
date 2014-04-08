@@ -4,7 +4,7 @@ namespace Snaggle\OAuth1\Client\Signature;
  * Class to facilitate the creation of the Authorization header that needs to
  * to be sent for the request
  */
-class HmacSha1
+class HmacSha1 implements Signature
 {
     /**
      * Value for the nonce
@@ -32,7 +32,7 @@ class HmacSha1
      *
      * @var int $timestamp
      */
-    private $timestamp;
+    private $timestamp = 0;
 
     /**
      * Value for the signature method
@@ -190,12 +190,72 @@ class HmacSha1
     }
 
     /**
+     * Generate the timestamp
+     */
+    public function generateTimestamp()
+    {
+        $this->timestamp = time();
+    }
+
+    /**
      * Method to generate timestamp
      *
      * @return int
      */
     public function getTimestamp()
     {
-        return time();
+        if (!this->timestamp === 0) {
+            $this->timestamp = $this->generateTimestamp();
+        }
+        return $this->timestamp;
     }
+
+    /**
+     * Create the base string for the signature
+     */
+    private function createBaseString()
+    {
+        $paramArray = array(
+            'oauth_nonce' => $this->getNonce(),
+            'oauth_callback' => $this->callback,
+            'oauth_signature_method' => $this->signatureMethod,
+            'oauth_timestamp' => $this->getTimestamp(),
+            'oauth_consumer_key' => $this->consumerCredential->getIdentifer(),
+            'oauth_token' => $this->userCredential->getIdentifier(),
+            'oauth_version' => $this->version
+        );
+
+        if (!$this->callback === '') {
+            unset($paramArray['oauth_callback']);
+        }
+       
+        $tempArray = array();
+        ksort($paramArray);
+
+        foreach($paramArray as $key => $value) {
+            $tempArray[] = $key . '=' . rawurlencode($value);
+        }
+
+        return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
+    }
+
+    /**
+     * Method to generate the composite key
+     */
+    private function createCompositeKey()
+    {
+        $key = rawurlencode($this->consumerCredential->getSecret());
+        if (($userSecret = $this->userCredential->getSecret()) !== '') {
+            $key. = '&' . rawurlencode($userSecret);
+        }
+    }
+
+    /**
+     * Method to create the signature
+     */
+    public function sign()
+    {
+        return base64_encode(hash_hmac('sha1', $this->createBaseString(), $this->createCompositeKey(), true));
+    }
+}
 
