@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-0": {
-            "Snaggle\\":"src/"
+            "Snaggle" : "./src/"
         }
     }
 }
