@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signature;
+namespace Snaggle\OAuth1\Client\Signatures;
 /**
  * Class to facilitate the creation of the Authorization header that needs to
  * to be sent for the request
@@ -78,8 +78,8 @@ class HmacSha1 implements Signature
      * @param string $httpMethod
      */
     public function __construct(
-        \Snaggle\OAuth1\Client\Credential $consumerCredential,
-        \Snaggle\OAuth1\Client\Credential $userCredential,
+        \Snaggle\OAuth1\Client\Credentials\Credential $consumerCredential,
+        \Snaggle\OAuth1\Client\Credentials\Credential $userCredential
     )
     {
         $this->consumerCredential = $consumerCredential;
@@ -162,7 +162,7 @@ class HmacSha1 implements Signature
      */
     public function setCallback($callback)
     {
-        $this->callback = $callback
+        $this->callback = $callback;
     }
 
     /**
@@ -200,7 +200,7 @@ class HmacSha1 implements Signature
      */
     public function getTimestamp()
     {
-        if (!this->timestamp === 0) {
+        if (!$this->timestamp === 0) {
             $this->timestamp = $this->generateTimestamp();
         }
         return $this->timestamp;
@@ -242,7 +242,7 @@ class HmacSha1 implements Signature
     {
         $key = rawurlencode($this->consumerCredential->getSecret());
         if (($userSecret = $this->userCredential->getSecret()) !== '') {
-            $key. = '&' . rawurlencode($userSecret);
+            $key .= '&' . rawurlencode($userSecret);
         }
     }
 

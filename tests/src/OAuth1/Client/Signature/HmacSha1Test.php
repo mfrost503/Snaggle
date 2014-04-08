@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signature;
+namespace Snaggle\OAuth1\Client\Signatures;
 use Snaggle\OAuth1\Client\Credentials as Credentials;
 
 class HmacSha1Test extends \PHPUnit_Framework_TestCase
@@ -24,11 +24,11 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
      */
     public function generateNonce()
     {
-        $consumer = new \Credentials\ConsumerCredentials();
+        $consumer = new Credentials\ConsumerCredentials();
         $consumer->setIdentifier('ABCDEFG');
         $consumer->setSecret('SHHHHHHH');
 
-        $user = new \Credentials\AccessCredentials();
+        $user = new Credentials\AccessCredentials();
         $user->setIdentifier('1234ABCD');
         $user->setSecret('KEEPOUT');
 

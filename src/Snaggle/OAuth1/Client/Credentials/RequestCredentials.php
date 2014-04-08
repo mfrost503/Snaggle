@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credential;
+namespace Snaggle\OAuth1\Client\Credentials;
 /**
  * This will store the temporary credentials that are sent back in the first
  * step of the token exchange. These are short-lived credentials and will 

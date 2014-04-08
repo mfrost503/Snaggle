@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credential;
+namespace Snaggle\OAuth1\Client\Credentials;
 /**
  * Representation of the temporary credentials that are sent back after the
  * authorization step is complete on the third party site
