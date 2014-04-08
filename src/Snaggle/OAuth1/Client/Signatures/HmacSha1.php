@@ -39,7 +39,7 @@ class HmacSha1 implements Signature
      *
      * @var string $signature_method
      */
-    private $signature_method = 'HMAC-SHA1';
+    private $signatureMethod = 'HMAC-SHA1';
 
     /**
      * Instance of consumer credential
@@ -200,10 +200,25 @@ class HmacSha1 implements Signature
      */
     public function getTimestamp()
     {
-        if (!$this->timestamp === 0) {
-            $this->timestamp = $this->generateTimestamp();
-        }
         return $this->timestamp;
+    }
+
+    public function setTimestamp($timestamp = 0)
+    {
+        $this->timestamp = $timestamp;
+        if ($timestamp === 0) {
+            $this->generateTimestamp();
+        }
+    }    
+
+    /**
+     * Method to retrieve the signature method
+     *
+     * @return string
+     */
+    public function getSignatureMethod()
+    {
+        return $this->signatureMethod;
     }
 
     /**
@@ -211,12 +226,13 @@ class HmacSha1 implements Signature
      */
     private function createBaseString()
     {
+        $this->setTimestamp();
         $paramArray = array(
             'oauth_nonce' => $this->getNonce(),
             'oauth_callback' => $this->callback,
             'oauth_signature_method' => $this->signatureMethod,
             'oauth_timestamp' => $this->getTimestamp(),
-            'oauth_consumer_key' => $this->consumerCredential->getIdentifer(),
+            'oauth_consumer_key' => $this->consumerCredential->getIdentifier(),
             'oauth_token' => $this->userCredential->getIdentifier(),
             'oauth_version' => $this->version
         );
