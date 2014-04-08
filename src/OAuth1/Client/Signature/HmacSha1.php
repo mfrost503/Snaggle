@@ -78,16 +78,12 @@ class HmacSha1 implements Signature
      * @param string $httpMethod
      */
     public function __construct(
-        $resourceURL,
         \Snaggle\OAuth1\Client\Credential $consumerCredential,
         \Snaggle\OAuth1\Client\Credential $userCredential,
-        $httpMethod = 'GET'
     )
     {
-        $this->resourceURL = $resourceURL;
         $this->consumerCredential = $consumerCredential;
         $this->userCredential = $userCredential;
-        $this->httpMethod = $httpMethod;
     }
 
     /**
