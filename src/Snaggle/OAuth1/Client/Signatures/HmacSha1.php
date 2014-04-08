@@ -222,6 +222,26 @@ class HmacSha1 implements Signature
     }
 
     /**
+     * Method for retrieving the consumer
+     *
+     * @return \Snaggle\OAuth1\Client\Credentials
+     */
+    public function getConsumer()
+    {
+        return $this->consumerCredential;
+    }
+
+    /**
+     * Method for retrieving the user credentials
+     *
+     * @return \Snaggle\OAuth1\Client\Credentials
+     */
+    public function getUser()
+    {
+        return $this->userCredential;
+    }
+
+    /**
      * Create the base string for the signature
      */
     private function createBaseString()
