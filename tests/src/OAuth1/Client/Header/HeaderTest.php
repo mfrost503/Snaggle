@@ -44,10 +44,10 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->signature->setResourceURL('https://example.com/api');
         $this->signature->setCallback('https://my.site/callback');
         $header = new Header($this->signature);
-        $headerString = $header->createAuthorizationHeader();
-        $this->assertContains('oauth_token=ACCESS_TOKEN', $headerString, 'Access token not set');
+        $headerString = $header->createAuthorizationHeader(true);
+        $this->assertContains('oauth_token="ACCESS_TOKEN"', $headerString, 'Access token not set');
         $this->assertContains('Authorization:', $headerString, 'Authorization prefix missing');
-        $this->assertContains('oauth_version=1.0', $headerString, 'OAuth version missing');
-        $this->assertContains('oauth_signature_method=HMAC-SHA1', $headerString, 'Signature method missing');
+        $this->assertContains('oauth_version="1.0"', $headerString, 'OAuth version missing');
+        $this->assertContains('oauth_signature_method="HMAC-SHA1"', $headerString, 'Signature method missing');
     }
 }
