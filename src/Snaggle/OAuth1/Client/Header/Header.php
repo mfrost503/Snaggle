@@ -23,7 +23,7 @@ class Header
      *
      * @param Snaggle\OAuth1\Client\Signatures\Signature $signature
      */
-    public function __construct(\Snaggle\OAuth1\Client\Signatures\Signature $signature)
+    public function __construct(\Snaggle\OAuth1\Client\Signatures\SignatureInterface $signature)
     {
         $this->signature = $signature;
     }

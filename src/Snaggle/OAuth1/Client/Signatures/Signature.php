@@ -1,12 +1,258 @@
 <?php
 namespace Snaggle\OAuth1\Client\Signatures;
 /**
- * Interface for the OAuth Signature
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright (c) 2014
+ * @license http://opensource.org/licenses/MIT MIT
+ * @package Snaggle
+ * @subpackage OAuth1
+ *
+ * Base functionality for the signatures, including all the 
+ * properties and accessor methods
  */
-interface Signature
+class Signature
 {
     /**
-     * Method to create the signature
+     * Value for the nonce
+     *                   
+     * @var string $nonce
      */
-    public function sign();
+    protected $nonce = '';
+
+    /**
+     * Value for the OAuth Version
+     *
+     * @var string $version
+     */
+    protected $version = '1.0';
+
+    /**
+     * Value for the callback
+     *
+     * @var string $callback
+     */
+    protected $callback = '';
+
+    /**
+     * Value for the timestamp
+     *
+     * @var int $timestamp
+     */
+    protected $timestamp = 0;
+
+    /**
+     * Value for the signature method
+     *
+     * @var string $signature_method
+     */
+    protected $signatureMethod = 'HMAC-SHA1';
+
+    /**
+     * Instance of consumer credential
+     *
+     * @var \Snaggle\OAuth1\Client\Credential $consumerCredential
+     */
+    protected $consumerCredential;
+
+    /**
+     * Instance of user credentials
+     *
+     * @var \Snaggle\OAuth1\Client\Credential $userCredential
+     */
+    protected $userCredential;
+
+    /**
+     * Value of the HTTP Method
+     *
+     * @var string
+     */
+    protected $httpMethod;
+
+    /**
+     * Resource URL attempting to be accessed
+     *
+     * @var string
+     */
+    protected $resourceURL;
+
+   /**
+    * Constructor
+    *
+    * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
+    * @param \Snaggle\OAuth1\Client\Credential $userCredential
+    */
+    public function __construct(
+        \Snaggle\OAuth1\Client\Credentials\Credential $consumerCredential,
+        \Snaggle\OAuth1\Client\Credentials\Credential $userCredential
+    )
+    {
+        $this->consumerCredential = $consumerCredential;
+        $this->userCredential = $userCredential;
+    }
+
+   /**
+    * Method for retrieving HTTP Verb
+    *
+    * @return string
+    */
+    public function getHttpMethod()
+    {
+        return $this->httpMethod;
+    }
+    
+    /**
+     * Method to set the HTTP verb for the request
+     *
+     * @param string $method
+     */
+    public function setHttpMethod($method)
+    {
+        $allowedMethods = array(
+             'POST',
+             'PUT',
+             'GET',
+             'DELETE',
+             'PATCH'
+        );
+        if (!in_array(strtoupper($method), $allowedMethods)) {
+            throw new \InvalidArgumentException('Provided method not allowed');
+        }
+        $this->httpMethod = strtoupper($method);
+    }
+
+    /**
+     * Method to retrieve resourceURL
+     *
+     * @return string
+     */
+    public function getResourceURL()
+    {
+        return $this->resourceURL;
+    }
+
+    /**
+     * Method to set the ResourceURL, should allow for the generation of a new
+     * signature without needing a new HmacSha1 instance
+     *
+     * @param string $resourceURL
+     */
+    public function setResourceURL($resourceURL)
+    {
+        $this->resourceURL = $resourceURL;
+    }
+
+    /**
+     * Method to set the nonce
+     *
+     * @param string $nonce
+     */
+    public function setNonce($nonce)
+    {
+        $this->nonce = $nonce;
+    }
+
+    /**
+     * Method to retrieve the nonce
+     *
+     * @return string
+     */
+    public function getNonce()
+    {
+        if ($this->nonce !== '') {
+            return $this->nonce;
+        }
+        $this->nonce = md5(uniqid(rand(), true));
+        return $this->nonce;
+    }
+
+    /**
+     * Method to set the callback
+     *
+     * @param string $callback
+     */
+    public function setCallback($callback)
+    {
+        $this->callback = $callback;
+    }
+
+    /**
+     * Method to retrieve the callback
+     *
+     * @return string
+     */
+    public function getCallback()
+    {
+        return $this->callback;
+    }
+
+    /**
+     * Method to get the version
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Generate the timestamp
+     */
+    public function generateTimestamp()
+    {
+        $this->timestamp = time();
+    }
+
+    /**
+     * Method to generate timestamp
+     *
+     * @return int
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Method to set the timestamp parameter for the signature
+     *
+     * @param int $timestamp
+     */
+    public function setTimestamp($timestamp = 0)
+    {
+        $this->timestamp = $timestamp;
+        if ($timestamp === 0) {
+            $this->generateTimestamp();
+        }
+    }
+
+    /**
+     * Method to retrieve the signature method
+     *
+     * @return string
+     */
+    public function getSignatureMethod()
+    {
+        return $this->signatureMethod;
+    }
+
+    /**
+     * Method for retrieving the consumer
+     *
+     * @return \Snaggle\OAuth1\Client\Credentials
+     */
+    public function getConsumer()
+    {
+        return $this->consumerCredential;
+    }
+
+    /**
+     * Method for retrieving the user credentials
+     *
+     * @return \Snaggle\OAuth1\Client\Credentials
+     */
+    public function getUser()
+    {
+        return $this->userCredential;
+    }
 }
