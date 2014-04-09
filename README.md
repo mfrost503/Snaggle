@@ -1,5 +1,7 @@
 ## Snaggle
 
+[![Build Status](https://travis-ci.org/mfrost503/Snaggle.svg?branch=master)](https://travis-ci.org/mfrost503/Snaggle)
+
 Snaggle is an OAuth Library that you can use to help deal with all things OAuth. While OAuth 2.0 is suggested for building a new API, there are still plenty of popular services that use OAuth 1.0. The first release of this library is the OAuth 1.0 Client. Building the Authorization headers for an OAuth 1.0 request doesn't have to be difficult.
 
 ### OAuth 1.0 Client Examples
