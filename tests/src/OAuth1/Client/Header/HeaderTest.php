@@ -21,6 +21,7 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->user->setSecret('ACCESS_SECRET');
 
         $this->signature = new Signature\HmacSha1($this->consumer, $this->user);
+        $this->plaintext = new Signature\Plaintext($this->consumer, $this->user);
     }
 
     /**
@@ -31,6 +32,7 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         unset($this->consumer);
         unset($this->user);
         unset($this->signature);
+        unset($this->plaintext);
     }
 
     /**
@@ -49,5 +51,25 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('Authorization:', $headerString, 'Authorization prefix missing');
         $this->assertContains('oauth_version="1.0"', $headerString, 'OAuth version missing');
         $this->assertContains('oauth_signature_method="HMAC-SHA1"', $headerString, 'Signature method missing');
+    }
+
+    /**
+     * @test
+     *
+     * Test to ensure plaintext signature is added to the header
+     */
+    public function verifyPlaintextSignatureIsAdded()
+    {
+        $expectedSignature = rawurlencode($this->consumer->getSecret());
+        $expectedSignature .= '%26';
+        $expectedSignature .= rawurlencode($this->user->getSecret());
+        $this->plaintext->setHttpMethod('get');
+        $this->plaintext->setResourceURL('https://example.com/api');
+        $this->plaintext->setNonce('123456');
+        $header = new Header($this->plaintext);
+        $headerString = $header->createAuthorizationHeader();
+        $this->assertContains($expectedSignature, $headerString, 'Signature was not found');
+        $this->assertContains('OAuth', $headerString, 'OAuth Authorization type not found');
+        $this->assertContains('oauth_nonce="123456"', $headerString, 'Nonce not found');
     }
 }
