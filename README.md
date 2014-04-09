@@ -30,6 +30,12 @@ $header = new Header\Header($signature);
 $header->createAuthorizationHeader();
 ```
 
+There's also a plaintext signature type (which should only be used when there is no other way and over https), it implements the signature interface and uses the signature parent, so it's use is the same as HmacSha1, only the instantiation differs
+```php
+$signature = new Signature\Plaintext($consumer, $access);
+```
+This line can be used interchangibly with the signature instantiation in the previous example.
+
 At this point, the headers can be place in a CURL call or set in Guzzle, there will be examples of this to follow.
 
 Also coming soon, will be a Request class that is going to wrap Guzzle, and will natively handle the token exchange.
