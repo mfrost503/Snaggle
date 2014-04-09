@@ -152,7 +152,8 @@ class HmacSha1 implements Signature
         if ($this->nonce !== '') {
             return $this->nonce;
         }
-        return md5(uniqid(rand(), true));
+        $this->nonce = md5(uniqid(rand(), true));
+        return $this->nonce;
     }
 
     /**
@@ -244,9 +245,11 @@ class HmacSha1 implements Signature
     /**
      * Create the base string for the signature
      */
-    private function createBaseString()
+    public function createBaseString()
     {
-        $this->setTimestamp();
+        if ($this->timestamp === 0) {
+            $this->setTimestamp();
+        }
         $paramArray = array(
             'oauth_nonce' => $this->getNonce(),
             'oauth_callback' => $this->callback,
@@ -257,7 +260,7 @@ class HmacSha1 implements Signature
             'oauth_version' => $this->version
         );
 
-        if (!$this->callback === '') {
+        if ($this->callback === '') {
             unset($paramArray['oauth_callback']);
         }
        
@@ -267,19 +270,19 @@ class HmacSha1 implements Signature
         foreach($paramArray as $key => $value) {
             $tempArray[] = $key . '=' . rawurlencode($value);
         }
-
         return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
     }
 
     /**
      * Method to generate the composite key
      */
-    private function createCompositeKey()
+    public function createCompositeKey()
     {
         $key = rawurlencode($this->consumerCredential->getSecret());
         if (($userSecret = $this->userCredential->getSecret()) !== '') {
             $key .= '&' . rawurlencode($userSecret);
         }
+        return $key;
     }
 
     /**

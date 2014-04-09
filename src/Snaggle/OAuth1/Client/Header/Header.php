@@ -33,14 +33,14 @@ class Header
      *
      * @return string
      */
-    public function createAuthorizationHeader()
+    public function createAuthorizationHeader($includePrefix=false)
     {
         $headerParams = array(
             'oauth_signature' => $this->signature->sign(),
             'oauth_nonce' => $this->signature->getNonce(),
             'oauth_signature_method' => $this->signature->getSignatureMethod(),
             'oauth_timestamp' => $this->signature->getTimestamp(),
-            'oauth_consumer_token' => $this->signature->getConsumer()->getIdentifier(),
+            'oauth_consumer_key' => $this->signature->getConsumer()->getIdentifier(),
             'oauth_token' => $this->signature->getUser()->getIdentifier(),
             'oauth_version' => $this->signature->getVersion()
         );
@@ -49,12 +49,12 @@ class Header
         }
 
         $tempArray = array();
-
+        ksort($headerParams);
         foreach($headerParams as $key => $value) {
-            $tempArray[] = $key . '=' . rawurlencode($value);
+            $tempArray[] = $key . '="' . rawurlencode($value) . '"';
         }
-        $prefix = "Authorization: OAuth ";
-        $headerString = implode(',', $tempArray);
-        return $prefix . $headerString;
+        $prefix = "Authorization: ";
+        $headerString = 'OAuth ' . implode(', ', $tempArray);
+        return ($includePrefix) ? $prefix . $headerString : $headerString;
     }
 }
