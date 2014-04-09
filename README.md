@@ -5,7 +5,7 @@ Snaggle is an OAuth Library that you can use to help deal with all things OAuth.
 ### OAuth 1.0 Client Examples
 OAuth 1.0 requires the use of Access and Consumer tokens, being able to create a valid signature will unlock the content of an OAuth 1.0 APi.
 
-```
+```php
 <?php
 namespace Snaggle\OAuth1\Client\Credentials;
 use Snaggle\OAuth1\Client\Signatures as Signature;
