@@ -83,13 +83,6 @@ class Signature
     protected $postFields = array();
 
     /**
-     * Verifier that will be used in a token exchange
-     *
-     * @var string
-     */
-    protected $verifier;
-
-    /**
      * Constructor
      *
      * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
@@ -292,25 +285,5 @@ class Signature
     public function getPostFields()
     {
         return $this->postFields;
-    }
-
-    /**
-     * Method to set the OAuth Verifier
-     *
-     * @param string $verifier
-     */
-    public function setVerifier($verifier)
-    {
-        $this->verifier = $verifier;
-    }
-
-    /**
-     * Method to get the OAuth Verifier
-     *
-     * @retun string
-     */
-    public function getVerifier()
-    {
-        return $this->verifier;
     }
 }

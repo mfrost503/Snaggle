@@ -28,7 +28,6 @@ class HmacSha1 extends Signature implements SignatureInterface
             'oauth_timestamp' => $this->getTimestamp(),
             'oauth_consumer_key' => $this->consumerCredential->getIdentifier(),
             'oauth_token' => $this->userCredential->getIdentifier(),
-            'oauth_verifier' => '',
             'oauth_version' => $this->version
         );
         $baseString = $this->buildBaseString($paramArray);
@@ -46,10 +45,12 @@ class HmacSha1 extends Signature implements SignatureInterface
         $tempArray = array();
         ksort($oauthParams);
 
+        if ($oauthParams['oauth_callback'] === '') {
+            unset($oauthParams['oauth_callback']);
+        }
+
         foreach($oauthParams as $key => $value) {
-            if ($value !== '' && $value !== null) {
-                $tempArray[] = $key . '=' . rawurlencode($value);
-            }
+            $tempArray[] = $key . '=' . rawurlencode($value);
         }
         $parsedResource = parse_url($this->resourceURL);
         $baseString = $this->httpMethod .'&';
@@ -70,9 +71,9 @@ class HmacSha1 extends Signature implements SignatureInterface
      */
     private function createCompositeKey()
     {
-        $key = rawurlencode($this->consumerCredential->getSecret());
+        $key = rawurlencode($this->consumerCredential->getSecret()) . '&';
         if (($userSecret = $this->userCredential->getSecret()) !== '') {
-            $key .= '&' . rawurlencode($userSecret);
+            $key .=  rawurlencode($userSecret);
         }
         return $key;
     }
