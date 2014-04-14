@@ -14,10 +14,18 @@ namespace Snaggle\OAuth1\Client\Signatures;
 class Plaintext extends Signature implements SignatureInterface
 {
     /**
+     * Value for the signature method
+     *
+     * @var string $signature_method
+     */
+    protected $signatureMethod = 'PLAINTEXT';
+
+    /**
      * Method to sign an OAuth Plaintext request
      */
     public function sign()
     {
         return rawurlencode($this->getConsumer()->getSecret()) . '&'. rawurlencode($this->getUser()->getSecret());
     }
+
 }

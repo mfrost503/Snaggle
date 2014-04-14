@@ -42,7 +42,8 @@ class Header
             'oauth_timestamp' => $this->signature->getTimestamp(),
             'oauth_consumer_key' => $this->signature->getConsumer()->getIdentifier(),
             'oauth_token' => $this->signature->getUser()->getIdentifier(),
-            'oauth_version' => $this->signature->getVersion()
+            'oauth_version' => $this->signature->getVersion(),
+            'oauth_verifier' => $this->signature->getVerifier()
         );
         if (($callback = $this->signature->getCallback()) !== '') {
             $headerParams['oauth_callback'] = $callback;
@@ -51,7 +52,9 @@ class Header
         $tempArray = array();
         ksort($headerParams);
         foreach($headerParams as $key => $value) {
-            $tempArray[] = $key . '="' . rawurlencode($value) . '"';
+            if ($value !== '' || $value !== null) {
+                $tempArray[] = $key . '="' . rawurlencode($value) . '"';
+            }
         }
         $prefix = "Authorization: ";
         $headerString = 'OAuth ' . implode(', ', $tempArray);

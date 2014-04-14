@@ -75,12 +75,26 @@ class Signature
      */
     protected $resourceURL;
 
-   /**
-    * Constructor
-    *
-    * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
-    * @param \Snaggle\OAuth1\Client\Credential $userCredential
-    */
+    /**
+     * Post fields that may be sent and may be required in the base string
+     *
+     * @var array
+     */
+    protected $postFields = array();
+
+    /**
+     * Verifier that will be used in a token exchange
+     *
+     * @var string
+     */
+    protected $verifier;
+
+    /**
+     * Constructor
+     *
+     * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
+     * @param \Snaggle\OAuth1\Client\Credential $userCredential
+     */
     public function __construct(
         \Snaggle\OAuth1\Client\Credentials\Credential $consumerCredential,
         \Snaggle\OAuth1\Client\Credentials\Credential $userCredential
@@ -200,7 +214,7 @@ class Signature
      */
     public function generateTimestamp()
     {
-        $this->timestamp = time();
+        return time();
     }
 
     /**
@@ -210,6 +224,9 @@ class Signature
      */
     public function getTimestamp()
     {
+        if ($this->timestamp === 0) {
+            return $this->generateTimestamp();
+        }
         return $this->timestamp;
     }
 
@@ -222,7 +239,7 @@ class Signature
     {
         $this->timestamp = $timestamp;
         if ($timestamp === 0) {
-            $this->generateTimestamp();
+            $this->timestamp = $this->generateTimestamp();
         }
     }
 
@@ -254,5 +271,46 @@ class Signature
     public function getUser()
     {
         return $this->userCredential;
+    }
+
+    /**
+     * Method to set the POST FIELDS or data of a post request, this may be required in your 
+     * base string
+     *
+     * @param array $postFields
+     */
+    public function setPostFields(array $postFields)
+    {
+        $this->postFields = $postFields;
+    }
+
+    /**
+     * Method to retrieve any set postFields you've included
+     *
+     * @return array
+     */
+    public function getPostFields()
+    {
+        return $this->postFields;
+    }
+
+    /**
+     * Method to set the OAuth Verifier
+     *
+     * @param string $verifier
+     */
+    public function setVerifier($verifier)
+    {
+        $this->verifier = $verifier;
+    }
+
+    /**
+     * Method to get the OAuth Verifier
+     *
+     * @retun string
+     */
+    public function getVerifier()
+    {
+        return $this->verifier;
     }
 }

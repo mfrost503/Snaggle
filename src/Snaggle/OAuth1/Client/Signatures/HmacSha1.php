@@ -7,6 +7,13 @@ namespace Snaggle\OAuth1\Client\Signatures;
 class HmacSha1 extends Signature implements SignatureInterface
 {
     /**
+     * Value for the signature method
+     *
+     * @var string $signature_method
+     */
+    protected $signatureMethod = 'HMAC-SHA1';
+
+    /**
      * Create the base string for the signature
      */
     public function createBaseString()
@@ -21,26 +28,47 @@ class HmacSha1 extends Signature implements SignatureInterface
             'oauth_timestamp' => $this->getTimestamp(),
             'oauth_consumer_key' => $this->consumerCredential->getIdentifier(),
             'oauth_token' => $this->userCredential->getIdentifier(),
+            'oauth_verifier' => '',
             'oauth_version' => $this->version
         );
+        $baseString = $this->buildBaseString($paramArray);
+        return $baseString;
+    }
 
-        if ($this->callback === '') {
-            unset($paramArray['oauth_callback']);
-        }
-       
+    /**
+     * Build the base string based off the values that are passed in
+     *
+     * @param array $oauthParams
+     * @return string
+     */
+    public function buildBaseString(array $oauthParams)
+    {
         $tempArray = array();
-        ksort($paramArray);
+        ksort($oauthParams);
 
-        foreach($paramArray as $key => $value) {
-            $tempArray[] = $key . '=' . rawurlencode($value);
+        foreach($oauthParams as $key => $value) {
+            if ($value !== '' && $value !== null) {
+                $tempArray[] = $key . '=' . rawurlencode($value);
+            }
         }
-        return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
+        $parsedResource = parse_url($this->resourceURL);
+        $baseString = $this->httpMethod .'&';
+        $baseString .= rawurlencode($parsedResource['scheme'] . '://' . $parsedResource['host'] . $parsedResource['path']);
+        $baseString .= (isset($parsedResource['query'])) ? '&' . rawurlencode($parsedResource['query']) . '%26' : '&';
+        $baseString .= rawurlencode(implode('&', $tempArray));
+        if (!empty($this->postFields)) {
+            foreach ($this->postFields as $key => $value) {
+                $baseString .= '%26' . $key .rawurlencode('=') . rawurlencode($value);
+            }
+        }
+        //return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
+        return $baseString;
     }
 
     /**
      * Method to generate the composite key
      */
-    public function createCompositeKey()
+    private function createCompositeKey()
     {
         $key = rawurlencode($this->consumerCredential->getSecret());
         if (($userSecret = $this->userCredential->getSecret()) !== '') {
