@@ -20,11 +20,12 @@ class Request
     protected $httpClient;
 
     /**
-     * Host for the request, default value is null can be overridden for different vendors
+     * Config for client, default value is an empty array can be overridden 
+     * for different vendors
      *
      * @var string $host
      */
-    protected $host = null;
+    protected $configuration = []; 
 
     /**
      * Method to get a Guzzle HTTP Client to make the calls.
@@ -33,6 +34,6 @@ class Request
      */
     public function getHttpClient()
     {
-        return new Guzzle\Client($this->host);
+        return new Guzzle\Client($this->configuration);
     }
 }
