@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\OAuth1\Client\Request;
+use GuzzleHttp as Guzzle;
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright Copyright (c) 2014
@@ -19,6 +20,19 @@ class Request
     protected $httpClient;
 
     /**
+     * Host for the request, default value is null can be overridden for different vendors
      *
+     * @var string $host
      */
+    protected $host = null;
+
+    /**
+     * Method to get a Guzzle HTTP Client to make the calls.
+     *
+     * @return \GuzzleHttp\Client
+     */
+    public function getHttpClient()
+    {
+        return new Guzzle\Client($this->host);
+    }
 }
