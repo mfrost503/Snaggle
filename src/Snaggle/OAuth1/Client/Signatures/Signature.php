@@ -83,6 +83,11 @@ class Signature
     protected $postFields = array();
 
     /**
+     * OAuth Verifier value used in the access token request
+     */
+    protected $verifier = '';
+
+    /**
      * Constructor
      *
      * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
@@ -285,5 +290,25 @@ class Signature
     public function getPostFields()
     {
         return $this->postFields;
+    }
+
+    /**
+     * Method to set the verifier
+     *
+     * @param string $verifier
+     */
+    public function setVerifier($verifier)
+    {
+        $this->verifier = $verifier;
+    }
+
+    /**
+     * Method to retrieve the verifier
+     *
+     * @return string
+     */
+    public function getVerifier()
+    {
+        return $this->verifier;
     }
 }

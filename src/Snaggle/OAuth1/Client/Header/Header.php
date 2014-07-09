@@ -48,6 +48,10 @@ class Header
             $headerParams['oauth_callback'] = $callback;
         }
 
+        if (($verifier = $this->signature->getVerifier()) !== '') {
+            $headerParams['oauth_verifier'] = $verifier;
+        }
+
         $tempArray = array();
         ksort($headerParams);
 

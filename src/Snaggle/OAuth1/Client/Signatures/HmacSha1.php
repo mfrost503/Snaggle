@@ -14,6 +14,13 @@ class HmacSha1 extends Signature implements SignatureInterface
     protected $signatureMethod = 'HMAC-SHA1';
 
     /**
+     * Boolean for whether to include an empty token parameter
+     *
+     * @var boolean $include_empty_token
+     */
+    protected $include_empty_token = true;
+
+    /**
      * Create the base string for the signature
      */
     public function createBaseString()
@@ -28,7 +35,8 @@ class HmacSha1 extends Signature implements SignatureInterface
             'oauth_timestamp' => $this->getTimestamp(),
             'oauth_consumer_key' => $this->consumerCredential->getIdentifier(),
             'oauth_token' => $this->userCredential->getIdentifier(),
-            'oauth_version' => $this->version
+            'oauth_version' => $this->version,
+            'oauth_verifier' => $this->getVerifier()
         );
         $baseString = $this->buildBaseString($paramArray);
         return $baseString;
@@ -47,6 +55,10 @@ class HmacSha1 extends Signature implements SignatureInterface
 
         if ($oauthParams['oauth_callback'] === '') {
             unset($oauthParams['oauth_callback']);
+        }
+
+        if ($oauthParams['oauth_verifier'] === '') {
+            unset($oauthParams['oauth_verifier']);
         }
 
         foreach($oauthParams as $key => $value) {
@@ -84,6 +96,29 @@ class HmacSha1 extends Signature implements SignatureInterface
     public function sign()
     {
         return base64_encode(hash_hmac('sha1', $this->createBaseString(), $this->createCompositeKey(), true));
+    }
+
+    /**
+     * Method to check the empty token property
+     *
+     * @return boolean
+     */
+    public function getEmptyToken()
+    {
+        return $this->include_empty_token;
+    }
+
+    /**
+     * method to set the empty token property
+     *
+     * @param boolean $value
+     */
+    public function setEmptyToken($value)
+    {
+        if (!is_boolean($value)) {
+            throw new \InvalidArgumentException("Value must been a boolean");
+        }
+        $this->include_empty_token = $value;
     }
 }
 
