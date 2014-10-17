@@ -1,7 +1,9 @@
 <?php
 namespace Snaggle\OAuth1\Client\Header;
-use Snaggle\OAuth1\Client\Signatures as Signature;
-use Snaggle\OAuth1\Client\Credentials as Credential;
+use Snaggle\OAuth1\Client\Signatures\HmacSha1;
+use Snaggle\OAuth1\Client\Signatures\PlainText;
+use Snaggle\OAuth1\Client\Credentials\ConsumerCredentials;
+use Snaggle\OAuth1\Client\Credentials\AccessCredentials;
 /**
  * Tests for the header functionality
  */
@@ -12,16 +14,16 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->consumer = new Credential\ConsumerCredentials();
+        $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('CONSUMER');
         $this->consumer->setSecret('CONSUMER_SECRET');
 
-        $this->user = new Credential\AccessCredentials();
+        $this->user = new AccessCredentials();
         $this->user->setIdentifier('ACCESS_TOKEN');
         $this->user->setSecret('ACCESS_SECRET');
 
-        $this->signature = new Signature\HmacSha1($this->consumer, $this->user);
-        $this->plaintext = new Signature\Plaintext($this->consumer, $this->user);
+        $this->signature = new HmacSha1($this->consumer, $this->user);
+        $this->plaintext = new Plaintext($this->consumer, $this->user);
     }
 
     /**
