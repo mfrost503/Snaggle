@@ -1,7 +1,21 @@
 {
-    "require" : {
-        "guzzlehttp/guzzle": "~4.0"
-    },
+    "name": "mfrost503/Snaggle",
+    "type": "library",
+    "license": "MIT",
+    "description": "An OAuth 1.0 Client Library",
+    "keywords": ["OAuth1", "Client", "Authorization Header"],
+    "homepage": "https://github.com/mfrost503/Snaggle",
+    "authors": [
+        {
+            "name": "Matt Frost",
+            "email": "mfrost.design@gmail.com",
+            "homepage": "http://shortwhitebaldguy.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": >=5.4.0
+    }, 
     "autoload": {
         "psr-0": {
             "Snaggle" : "src/"
