@@ -55,7 +55,7 @@ without the prefix. Below is an example of each using Guzzle and cURL:
 ### Guzzle
 
 In Guzzle, we don't want the prefix so the
-```php $header->creationAuthorizationHeader()``` has a parameter ```php
+``` $header->creationAuthorizationHeader()``` has a parameter ```
 $includePrefix``` that is set to false by default. So here's how you'd use it
 with a client that doesn't need the header prefix.
  
@@ -91,7 +91,7 @@ $client->get('https://api.example.com/v1/users', [
 ### cURL
 
 cURL will require the prefix when adding the header to the request. In order to
-do this, we'll just need to pass the parameter ```true``` to the ```php
+do this, we'll just need to pass the parameter ```true``` to the ```
 $header->createAuthorizationHeader();```
 
 ```php
