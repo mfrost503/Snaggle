@@ -1,7 +1,7 @@
 <?php
 namespace Snaggle\OAuth1\Client\Header;
 use Snaggle\OAuth1\Client\Signatures\HmacSha1;
-use Snaggle\OAuth1\Client\Signatures\PlainText;
+use Snaggle\OAuth1\Client\Signatures\Plaintext;
 use Snaggle\OAuth1\Client\Credentials\ConsumerCredentials;
 use Snaggle\OAuth1\Client\Credentials\AccessCredentials;
 /**
