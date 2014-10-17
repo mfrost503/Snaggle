@@ -10,9 +10,9 @@ class RequestCredentials implements Credential
     /**
      * The identifier for the Request Credential
      *
-     * @var string $token
+     * @var string $identifier
      */
-    private $token = '';
+    private $identifier = '';
 
     /**
      * The secret for the Request Credential
@@ -29,17 +29,17 @@ class RequestCredentials implements Credential
      */
     public function getIdentifier()
     {
-        return $this->token;
+        return $this->identifier;
     }
 
     /**
      * Method to set the identifier for the request credential
      *
-     * @param string $token
+     * @param string $identifier
      */
-    public function setIdentifier($token)
+    public function setIdentifier($identifier)
     {
-        $this->token = $token;
+        $this->identifer = $identifier;
     }
 
     /**

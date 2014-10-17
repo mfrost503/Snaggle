@@ -4,7 +4,7 @@ namespace Snaggle\Client\Credentials;
  * Credential interface defines the contract for a Credential clas
  */
 
-interface Credential
+interface CredentialInterface
 {
     /**
      * getIdentifier method to return the identifying value of the credential

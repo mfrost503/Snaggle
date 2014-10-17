@@ -11,14 +11,14 @@ namespace Snaggle\Client\Credentials;
  * these are the credentials that are assigned when an API application 
  * is created
  */
-class ConsumerCredentials implements Credential
+class ConsumerCredentials implements CredentialInterface
 {
     /**
      * The public API key that is assigned at the creation of the application
      *
      * @var $key string
      */
-    private $key = '';
+    private $identifier = '';
 
     /**
      * The API secret that is assigned at the creation of the application
@@ -34,7 +34,7 @@ class ConsumerCredentials implements Credential
      */
     public function getIdentifier()
     {
-        return $this->key;
+        return $this->identifier;
     }
 
     /**
@@ -42,9 +42,9 @@ class ConsumerCredentials implements Credential
      *
      * @param string $key
      */
-    public function setIdentifier($key)
+    public function setIdentifier($identifier)
     {
-        $this->key = $key;
+        $this->identifier = $identifier;
     }
 
     /**

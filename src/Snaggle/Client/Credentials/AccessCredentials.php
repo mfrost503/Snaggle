@@ -1,12 +1,12 @@
 <?php
 namespace Snaggle\Client\Credentials;
 
-class AccessCredentials implements Credential
+class AccessCredentials implements CredentialInterface
 {
     /**
      * Property for the identifying token
      */
-    private $token;
+    private $identifier;
 
     /**
      * Property for the secret
@@ -16,11 +16,11 @@ class AccessCredentials implements Credential
     /**
      * Method to set the identifier
      *
-     * @param string $token
+     * @param string $identifier
      */
-    public function setIdentifier($token)
+    public function setIdentifier($identifier)
     {
-        $this->token = $token;
+        $this->identifier = $identifier;
     }
 
     /**
@@ -30,7 +30,7 @@ class AccessCredentials implements Credential
      */
     public function getIdentifier()
     {
-        return $this->token;
+        return $this->identifier;
     }
 
     /**

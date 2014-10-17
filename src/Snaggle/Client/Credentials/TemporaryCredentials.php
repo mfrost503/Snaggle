@@ -9,9 +9,9 @@ class TemporaryCredentials
     /**
      * The OAuth token that is provided after authorization
      * 
-     * @var string $token
+     * @var string $identifier
      */
-    private $token = '';
+    private $identifier = '';
 
     /**
      * The OAuth Verifier that is sent back confirming authorization
@@ -23,11 +23,11 @@ class TemporaryCredentials
     /**
      * Method to set the temporary token
      *
-     * @param string $token
+     * @param string $identifier
      */
-    public function setIdentifier($token)
+    public function setIdentifier($identifier)
     {
-        $this->token = $token;
+        $this->identifier = $identifier;
     }
 
     /**
@@ -37,7 +37,7 @@ class TemporaryCredentials
      */
     public function getIdentifier()
     {
-        return $this->token;
+        return $this->identifier;
     }
 
     /**
