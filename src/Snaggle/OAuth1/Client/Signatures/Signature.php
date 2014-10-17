@@ -130,6 +130,7 @@ class Signature
             throw new \InvalidArgumentException('Provided method not allowed');
         }
         $this->httpMethod = strtoupper($method);
+		return $this;
     }
 
     /**
@@ -151,6 +152,7 @@ class Signature
     public function setResourceURL($resourceURL)
     {
         $this->resourceURL = $resourceURL;
+        return $this;
     }
 
     /**
@@ -161,6 +163,7 @@ class Signature
     public function setNonce($nonce)
     {
         $this->nonce = $nonce;
+        return $this;
     }
 
     /**
@@ -185,6 +188,7 @@ class Signature
     public function setCallback($callback)
     {
         $this->callback = $callback;
+        return $this;
     }
 
     /**
@@ -239,6 +243,7 @@ class Signature
         if ($timestamp === 0) {
             $this->timestamp = $this->generateTimestamp();
         }
+        return $this;
     }
 
     /**
@@ -280,6 +285,7 @@ class Signature
     public function setPostFields(array $postFields)
     {
         $this->postFields = $postFields;
+        return $this;
     }
 
     /**
@@ -300,6 +306,7 @@ class Signature
     public function setVerifier($verifier)
     {
         $this->verifier = $verifier;
+        return $this;
     }
 
     /**
