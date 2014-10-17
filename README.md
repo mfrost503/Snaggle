@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/mfrost503/Snaggle.svg?branch=master)](https://travis-ci.org/mfrost503/Snaggle)
 
-Snaggle is an OAuth Library that you can use to help deal with all things OAuth. While OAuth 2.0 is suggested for building a new API, there are still plenty of popular services that use OAuth 1.0. The first release of this library is the OAuth 1.0 Client. Building the Authorization headers for an OAuth 1.0 request doesn't have to be difficult.
+Snaggle is an OAuth 1 Client Library that can be used to generate signatures and
+the appropriate OAuth 1 Headers. While OAuth 2.0 is suggested for building a new API, there are still plenty of popular services that use OAuth 1.0. 
 
 ### OAuth 1.0 Client Examples
 OAuth 1.0 requires the use of Access and Consumer tokens, being able to create a valid signature will unlock the content of an OAuth 1.0 APi.
@@ -123,3 +124,20 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [$authorizationHeader]);
 
 By using this approach, we can decouple the generation of the OAuth 1 Headers
 from the HTTP Client that will eventually be used to send the requests.
+
+## Notes
+
+OAuth 1.0 can be a little bit difficult to wrap your head around when you first
+look at it, the aim of this library to encapsulate a lot of that confusion and
+provide a simple interface for making OAuth 1.0 calls. The OAuth 1.0 RFC was the
+standard that was kept in mind when building this library, though I feel that I
+should point out, not every service that calls itself an OAuth 1.0 service
+follows this standard.
+
+This library works best with APIs that make an attempt to closely adhere to the
+Signature standards in the OAuth 1.0 specification, which unfortunately means
+that this may not work with every API that calls itself an OAuth 1.0. That
+doesn't mean that we've given up on those completely, it just means that as we
+become aware of them we'll have to analyze whether or not it's in the best
+interest of this project to accommodate various divergences from the OAuth 1.0
+standard. Pull Requests are always welcome.
