@@ -38,6 +38,29 @@ $signature = new Plaintext($consumer, $access);
 ```
 This line can be used interchangeably with the signature instantiation in the previous example.
 
+## Signatures
+
+This library has an implementation of HMAC-SHA1 and Plaintext signatures, these
+signatures are used to communicate the identity of the resource owner making the
+request. Services can have different requirements for how a signature is built,
+the signatures in this library are built to the OAuth 1.0 spec.
+
+### HMAC-SHA1
+
+HMAC-SHA1 is the more secure of the two signature types in this library and is
+the most commonly used. This signature involves the creation of a base string
+and composite key that are encapsulate and hash the information required to
+identify with an OAuth 1.0 service.
+
+### Plaintext
+
+Plaintext signatures should only be used over https, because they aren't secure.
+Services like Twitter don't allow you to use the Plaintext signature, but they
+can be very handy if you are working with an internal API and the complexity of
+a signature doesn't provide a real strong security benefit.
+
+
+
 ## HTTP Client
 
 Snaggle does not come with an HTTP client included in the library, the reason
@@ -49,7 +72,7 @@ work properly and handing those off to whatever client you choose to use.
 
 There are a couple different cases when it comes to providing headers to
 clients. For example, when setting a header in cURL you'll have to send the
-```'Authorization: '``` prefix, but it Guzzle you'll just want the content of
+```'Authorization: '``` prefix, but with Guzzle you'll just want the content of
 the headers. Snaggle gives you the option to generate the headers with or
 without the prefix. Below is an example of each using Guzzle and cURL:
 
@@ -61,25 +84,6 @@ $includePrefix``` that is set to false by default. So here's how you'd use it
 with a client that doesn't need the header prefix.
  
 ```php
-<?php
-namespace Snaggle\OAuth1\Client\Credentials;
-use Snaggle\OAuth1\Client\Signatures\HmacSha1;
-use Snaggle\OAuth1\Client\Signatures\Plaintext;
-use Snaggle\OAuth1\Client\Header\Header;
-
-// first we need to represent our tokens, these should be stored securely
-$consumer = new ConsumerCredentials();
-$consumer->setIdentifer('CONSUMER_KEY');
-$consumer->setSecret('CONSUMER_SECRET');
-
-$access = new AccessCredentials();
-$access->setIdentifier('ACCESS_TOKEN');
-$access->setSecret('ACCESS_SECRET');
-
-$signature = new HmacSha1($consumer, $access)
-    ->setResourceURL('https://api.example.com/v1/users')
-    ->setHttpMethod('get');
-
 $header = new Header($signature);
 $authorizationHeader = $header->createAuthorizationHeader();
 
@@ -96,25 +100,6 @@ do this, we'll just need to pass the parameter ```true``` to the ```
 $header->createAuthorizationHeader();```
 
 ```php
-<?php
-namespace Snaggle\OAuth1\Client\Credentials;
-use Snaggle\OAuth1\Client\Signatures\HmacSha1;
-use Snaggle\OAuth1\Client\Signatures\Plaintext;
-use Snaggle\OAuth1\Client\Header\Header;
-
-// first we need to represent our tokens, these should be stored securely
-$consumer = new ConsumerCredentials();
-$consumer->setIdentifer('CONSUMER_KEY');
-$consumer->setSecret('CONSUMER_SECRET');
-
-$access = new AccessCredentials();
-$access->setIdentifier('ACCESS_TOKEN');
-$access->setSecret('ACCESS_SECRET');
-
-$signature = new HmacSha1($consumer, $access)
-    ->setResourceURL('https://api.example.com/v1/users')
-    ->setHttpMethod('get');
-
 $header = new Header($signature);
 $authorizationHeader = $header->createAuthorizationHeader(true);
 
