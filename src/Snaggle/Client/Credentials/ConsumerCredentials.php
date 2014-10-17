@@ -1,10 +1,10 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credentials;
+namespace Snaggle\Client\Credentials;
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright Copyright (c) 2014
  * @package Snaggle
- * @subpackage OAuth1
+ * @subpackage Client
  * @license http://opensource.org/licenses/MIT MIT
  *
  * A class to represent the credentials of the consuming service provider,

@@ -1,6 +1,7 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
-use Snaggle\OAuth1\Client\Credentials as Credential;
+namespace Snaggle\Client\Signatures;
+use Snaggle\Client\Credentials\AccessCredentials;
+use Snaggle\Client\Credentials\ConsumerCredentials;
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright (c) 2014
@@ -17,11 +18,11 @@ class PlaintextTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->consumer = new Credential\ConsumerCredentials();
+        $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('ABCDEFG');
         $this->consumer->setSecret('THISISA');
 
-        $this->user = new Credential\AccessCredentials();
+        $this->user = new AccessCredentials();
         $this->user->setIdentifier('123ABC');
         $this->user->setSecret('SECRETMESSAGE');
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Header;
+namespace Snaggle\Client\Header;
 /**
  * @author Matt Frost <mfrost.design@gmail.com
  * @license http://opensource.org/licenses/MIT MIT
@@ -14,16 +14,16 @@ class Header
     /**
      * The signature that is going to bring most of the components in
      *
-     * @var Snaggle\OAuth1\Client\Signatures\Signature $signature
+     * @var Snaggle\Client\Signatures\Signature $signature
      */
     private $signature;
 
     /**
      * Constructor
      *
-     * @param Snaggle\OAuth1\Client\Signatures\Signature $signature
+     * @param Snaggle\Client\Signatures\Signature $signature
      */
-    public function __construct(\Snaggle\OAuth1\Client\Signatures\SignatureInterface $signature)
+    public function __construct(\Snaggle\Client\Signatures\SignatureInterface $signature)
     {
         $this->signature = $signature;
     }

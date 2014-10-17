@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credentials;
+namespace Snaggle\Client\Credentials;
 
 class AccessCredentials implements Credential
 {

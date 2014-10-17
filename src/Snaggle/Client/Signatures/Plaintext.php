@@ -1,11 +1,11 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
+namespace Snaggle\Client\Signatures;
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @license http://opensource.org/licenses/MIT MIT
  * @copyright (c) 2014
  * @package Snaggle
- * @subpackage OAuth1
+ * @subpackage Client 
  *
  * Plaintext signature method for OAuth 1 clients, important to note
  * this should only be used when there is no other way to authenticate

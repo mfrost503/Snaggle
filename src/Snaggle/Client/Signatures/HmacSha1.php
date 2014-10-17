@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
+namespace Snaggle\Client\Signatures;
 /**
  * Class to facilitate the creation of the Authorization header that needs to
  * to be sent for the request

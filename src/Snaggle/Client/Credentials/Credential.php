@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credentials;
+namespace Snaggle\Client\Credentials;
 /**
  * Credential interface defines the contract for a Credential clas
  */

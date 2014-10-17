@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
+namespace Snaggle\Client\Signatures;
 /**
  * Interface for the OAuth Signature
  */

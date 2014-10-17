@@ -1,6 +1,7 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
-use Snaggle\OAuth1\Client\Credentials as Credentials;
+namespace Snaggle\Client\Signatures;
+use Snaggle\Client\Credentials\ConsumerCredentials;
+use Snaggle\Client\Credentials\AccessCredentials;
 
 class HmacSha1Test extends \PHPUnit_Framework_TestCase
 {
@@ -9,11 +10,11 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->consumer = new Credentials\ConsumerCredentials();
+        $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('ABCDEFG');
         $this->consumer->setSecret('SHHHHHHH');
 
-        $this->user = new Credentials\AccessCredentials();
+        $this->user = new AccessCredentials();
         $this->user->setIdentifier('1234ABCD');
         $this->user->setSecret('KEEPOUT');
         $this->signature = new HmacSha1($this->consumer, $this->user);

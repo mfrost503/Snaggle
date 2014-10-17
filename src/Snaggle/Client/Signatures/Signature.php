@@ -1,11 +1,11 @@
 <?php
-namespace Snaggle\OAuth1\Client\Signatures;
+namespace Snaggle\Client\Signatures;
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright (c) 2014
  * @license http://opensource.org/licenses/MIT MIT
  * @package Snaggle
- * @subpackage OAuth1
+ * @subpackage Client
  *
  * Base functionality for the signatures, including all the 
  * properties and accessor methods
@@ -50,14 +50,14 @@ class Signature
     /**
      * Instance of consumer credential
      *
-     * @var \Snaggle\OAuth1\Client\Credential $consumerCredential
+     * @var \Snaggle\Client\Credential $consumerCredential
      */
     protected $consumerCredential;
 
     /**
      * Instance of user credentials
      *
-     * @var \Snaggle\OAuth1\Client\Credential $userCredential
+     * @var \Snaggle\Client\Credential $userCredential
      */
     protected $userCredential;
 
@@ -90,12 +90,12 @@ class Signature
     /**
      * Constructor
      *
-     * @param \Snaggle\OAuth1\Client\Credential $consumerCredential
-     * @param \Snaggle\OAuth1\Client\Credential $userCredential
+     * @param \Snaggle\Client\Credential $consumerCredential
+     * @param \Snaggle\Client\Credential $userCredential
      */
     public function __construct(
-        \Snaggle\OAuth1\Client\Credentials\Credential $consumerCredential,
-        \Snaggle\OAuth1\Client\Credentials\Credential $userCredential
+        \Snaggle\Client\Credentials\Credential $consumerCredential,
+        \Snaggle\Client\Credentials\Credential $userCredential
     )
     {
         $this->consumerCredential = $consumerCredential;
@@ -259,7 +259,7 @@ class Signature
     /**
      * Method for retrieving the consumer
      *
-     * @return \Snaggle\OAuth1\Client\Credentials
+     * @return \Snaggle\Client\Credentials
      */
     public function getConsumer()
     {
@@ -269,7 +269,7 @@ class Signature
     /**
      * Method for retrieving the user credentials
      *
-     * @return \Snaggle\OAuth1\Client\Credentials
+     * @return \Snaggle\Client\Credentials
      */
     public function getUser()
     {
