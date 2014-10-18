@@ -4,6 +4,14 @@
 
 Snaggle is an OAuth 1 Client Library that can be used to generate signatures and
 the appropriate OAuth 1 Headers. While OAuth 2.0 is suggested for building a new API, there are still plenty of popular services that use OAuth 1.0. 
+## Installation
+
+Snaggle should be installed via composer:
+```
+"require": {
+    "mfrost503/snaggle": "0.1.1"
+}
+```
 
 ### OAuth 1.0 Client Examples
 OAuth 1.0 requires the use of Access and Consumer tokens, being able to create a valid signature will unlock the content of an OAuth 1.0 APi.
