@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\Client\Header;
+use Snaggle\Client\Signatures\SignatureInterface;
 
 /**
  * @author Matt Frost <mfrost.design@gmail.com
@@ -18,16 +19,6 @@ class Header
      * @var Snaggle\Client\Signatures\Signature $signature
      */
     private $signature;
-
-    /**
-     * Constructor
-     *
-     * @param Snaggle\Client\Signatures\Signature $signature
-     */
-    public function __construct(\Snaggle\Client\Signatures\SignatureInterface $signature)
-    {
-        $this->signature = $signature;
-    }
 
     /**
      * Build the authorization header
@@ -63,5 +54,15 @@ class Header
         $prefix = "Authorization: ";
         $headerString = 'OAuth ' . implode(', ', $tempArray);
         return ($includePrefix) ? $prefix . $headerString : $headerString;
+    }
+
+    /**
+     * @param SignatureInterface $signature
+     *
+     * Set the signature object
+     */
+    public function setSignature(SignatureInterface $signature)
+    {
+        $this->signature = $signature;
     }
 }

@@ -5,6 +5,7 @@ use Snaggle\Client\Signatures\Plaintext;
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
 
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright Copyright (c) 2014
@@ -54,7 +55,8 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->signature->setHttpMethod('get');
         $this->signature->setResourceURL('https://example.com/api');
         $this->signature->setCallback('https://my.site/callback');
-        $header = new Header($this->signature);
+        $header = new Header();
+        $header->setSignature($this->signature);
         $headerString = $header->createAuthorizationHeader(true);
         $this->assertContains('oauth_token="ACCESS_TOKEN"', $headerString, 'Access token not set');
         $this->assertContains('Authorization:', $headerString, 'Authorization prefix missing');
@@ -75,7 +77,8 @@ Class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->plaintext->setHttpMethod('get');
         $this->plaintext->setResourceURL('https://example.com/api');
         $this->plaintext->setNonce('123456');
-        $header = new Header($this->plaintext);
+        $header = new Header();
+        $header->setSignature($this->plaintext);
         $headerString = $header->createAuthorizationHeader();
         $this->assertContains($expectedSignature, $headerString, 'Signature was not found');
         $this->assertContains('OAuth', $headerString, 'OAuth Authorization type not found');

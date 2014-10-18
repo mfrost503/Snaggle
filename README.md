@@ -36,7 +36,8 @@ $signature = new HmacSha1($consumer, $access)
     ->setResourceURL('https://api.example.com/v1/users')
     ->setHttpMethod('get');
 
-$header = new Header($signature);
+$header = new Header();
+$header->setSignature($signature);
 $header->createAuthorizationHeader();
 ```
 
@@ -92,7 +93,8 @@ $includePrefix``` that is set to false by default. So here's how you'd use it
 with a client that doesn't need the header prefix.
  
 ```php
-$header = new Header($signature);
+$header = new Header();
+$header->setSignature($signature);
 $authorizationHeader = $header->createAuthorizationHeader();
 
 $client = new Guzzle\HttpClient();
@@ -108,7 +110,8 @@ do this, we'll just need to pass the parameter ```true``` to the ```
 $header->createAuthorizationHeader();```
 
 ```php
-$header = new Header($signature);
+$header = new Header();
+$header->setSignature($signature);
 $authorizationHeader = $header->createAuthorizationHeader(true);
 
 $ch = curl_init('https://api.example.com/v1/users');
@@ -141,7 +144,8 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     $signature->setResourceURL('https://api.twitter.com/oauth/request_token')
               ->setHttpMethod('post');
 
-    $headers = new Header($signature);
+    $headers = new Header();
+    $headers->setSignature($signature);
     $auth = $headers->createAuthorizationHeader();
 
     $client = new \GuzzleHttp\Client();
@@ -159,7 +163,8 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     $signature->setHttpMethod('post')
               ->setResourceURL('https://api.twitter.com/oauth/access_token');
 
-    $headers = new Header($signature);
+    $headers = new Header();
+    $headers->setSignature($signature);
     $auth = $headers->createAuthorizationHeader();
 
     $client = new \GuzzleHttp\Client();
