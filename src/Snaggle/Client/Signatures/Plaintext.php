@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\Client\Signatures;
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @license http://opensource.org/licenses/MIT MIT

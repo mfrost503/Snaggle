@@ -4,7 +4,14 @@ use Snaggle\Client\Signatures\HmacSha1;
 use Snaggle\Client\Signatures\Plaintext;
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
+
 /**
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package tests
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
  * Tests for the header functionality
  */
 Class HeaderTest extends \PHPUnit_Framework_TestCase

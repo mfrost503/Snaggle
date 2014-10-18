@@ -1,11 +1,12 @@
 <?php
 namespace Snaggle\Client\Header;
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com
  * @license http://opensource.org/licenses/MIT MIT
  * @copyright Copyright (c) 2014
  * @package Snaggle
- * @subpackage OAuth1
+ * @subpackage Client
  *
  * This will generate the Authorization header that is required to make a valid OAuth1 Request
  */

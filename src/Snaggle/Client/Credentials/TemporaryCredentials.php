@@ -1,6 +1,13 @@
 <?php
 namespace Snaggle\OAuth1\Client\Credentials;
+
 /**
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package Snaggle
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
  * Representation of the temporary credentials that are sent back after the
  * authorization step is complete on the third party site
  */

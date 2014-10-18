@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\Client\Credentials;
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright Copyright (c) 2014

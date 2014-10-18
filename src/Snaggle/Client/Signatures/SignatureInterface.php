@@ -1,7 +1,14 @@
 <?php
 namespace Snaggle\Client\Signatures;
+
 /**
- * Interface for the OAuth Signature
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package Snaggle
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
+ * Contract for any types of signatures that may be added or replaced
  */
 interface SignatureInterface
 {

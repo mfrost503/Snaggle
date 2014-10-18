@@ -2,11 +2,12 @@
 namespace Snaggle\Client\Signatures;
 use Snaggle\Client\Credentials\AccessCredentials;
 use Snaggle\Client\Credentials\ConsumerCredentials;
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright (c) 2014
  * @license http://opensource.org/licenses/MIT MIT
- * @package Tests
+ * @package tests
  * @subpackage Snaggle
  *
  * Test to validate the creation of the Plaintext signature

@@ -3,6 +3,15 @@ namespace Snaggle\Client\Signatures;
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
 
+/**
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package tests
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
+ * Tests for the HMAC-SHA1 signature
+ */
 class HmacSha1Test extends \PHPUnit_Framework_TestCase
 {
     /**

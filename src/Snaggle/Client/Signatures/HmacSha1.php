@@ -1,6 +1,13 @@
 <?php
 namespace Snaggle\Client\Signatures;
+
 /**
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package Snaggle
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
  * Class to facilitate the creation of the Authorization header that needs to
  * to be sent for the request
  */

@@ -1,7 +1,15 @@
 <?php
 namespace Snaggle\Client\Credentials;
+
 /**
- * Credential interface defines the contract for a Credential clas
+ * @author Matt Frost <mfrost.design@gmail.com>
+ * @copyright Copyright (c) 2014
+ * @package Snaggle
+ * @subpackage Client
+ * @license http://opensource.org/licenses/MIT MIT
+ *
+ * Contract for the credentials and/or any other type that could
+ * serve as it's replacement
  */
 
 interface CredentialInterface
