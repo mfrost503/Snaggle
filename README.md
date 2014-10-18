@@ -17,8 +17,8 @@ Snaggle should be installed via composer:
 OAuth 1.0 requires the use of Access and Consumer tokens, being able to create a valid signature will unlock the content of an OAuth 1.0 APi.
 
 ```php
-<?php
-namespace Snaggle\OAuth1\Client\Credentials;
+use Snaggle\OAuth1\Client\Credentials\AccessCredentials;
+use Snaggle\OAuth1\Client\Credentials\ConsumerCredentials;
 use Snaggle\OAuth1\Client\Signatures\HmacSha1;
 use Snaggle\OAuth1\Client\Signatures\Plaintext;
 use Snaggle\OAuth1\Client\Header\Header;
@@ -117,6 +117,67 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [$authorizationHeader]);
 
 By using this approach, we can decouple the generation of the OAuth 1 Headers
 from the HTTP Client that will eventually be used to send the requests.
+
+## Making token requests
+
+One of the more challenging aspects to understand is the token exchange, which is
+necessary for communicating with a resource server. Essentially there are a number 
+different times where some back and forth communication needs to happen. Here's an
+example of how you could use this library to retrieve an access token from Twitter.
+
+```php
+use \Snaggle\Client\Credentials\ConsumerCredentials;
+use \Snaggle\Client\Credentials\AccessCredentials;
+use \Snaggle\Client\Signatures\HmacSha1;
+use \Snaggle\Client\Header\Header;
+
+$consumer = new ConsumerCredentials();
+$consumer->setIdentifier('CONSUMER KEY');
+$consumer->setSecret('CONSUMER SECRET');
+$access = AccessCredentials();
+if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
+
+    $signature = new HmacSha1($consumer, $access);
+    $signature->setResourceURL('https://api.twitter.com/oauth/request_token')
+              ->setHttpMethod('post');
+
+    $headers = new Header($signature);
+    $auth = $headers->createAuthorizationHeader();
+
+    $client = new \GuzzleHttp\Client();
+    $response = $client->post('https://api.twitter.com/oauth/request_token', [
+        'headers' => ['Authorization' => $auth]
+    ]);
+   
+    $res = $response->getBody();
+    parse_str($res);
+    header('Location: https://api.twitter.com/oauth/authorize?oauth_token=' . $oauth_token);
+
+}elseif(isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
+    $access->setIdentifier($_GET['oauth_token']);
+    $signature = new HmacSha1($consumer, $access);
+    $signature->setHttpMethod('post')
+              ->setResourceURL('https://api.twitter.com/oauth/access_token');
+
+    $headers = new Header($signature);
+    $auth = $headers->createAuthorizationHeader();
+
+    $client = new \GuzzleHttp\Client();
+    $response = $client->post('https://api.twitter.com/oauth/access_token', [
+        'headers' => ['Authorization' => $auth],
+        'body' => ['oauth_verifier' => $_GET['oauth_verifier']]
+    ]);
+
+    $res = $response->getBody();
+
+    // parse_str will create variables called $oauth_token and $oauth_token_secret
+    parse_str($res);
+	$access->setIdentifier($oauth_token);
+	$access->setSecret($oauth_token_secret);
+
+	// You will need to persist these values at this point
+}
+```
 
 ## Notes
 
