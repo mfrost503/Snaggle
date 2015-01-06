@@ -1,6 +1,6 @@
 <?php
 namespace Snaggle\Client\Header;
-use Snaggle\Client\Signatures\SignatureInterface;
+use \Snaggle\Client\Signatures\SignatureInterface;
 
 /**
  * @author Matt Frost <mfrost.design@gmail.com
@@ -16,7 +16,7 @@ class Header
     /**
      * The signature that is going to bring most of the components in
      *
-     * @var Snaggle\Client\Signatures\Signature $signature
+     * @var \Snaggle\Client\Signatures\Signature $signature
      */
     private $signature;
 

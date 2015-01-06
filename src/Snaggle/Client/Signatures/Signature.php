@@ -51,14 +51,14 @@ class Signature
     /**
      * Instance of consumer credential
      *
-     * @var \Snaggle\Client\Credential\CredentialInterface $consumerCredential
+     * @var \Snaggle\Client\Credentials\CredentialInterface $consumerCredential
      */
     protected $consumerCredential;
 
     /**
      * Instance of user credentials
      *
-     * @var \Snaggle\Client\Credential\CredentialInterface $userCredential
+     * @var \Snaggle\Client\Credentials\CredentialInterface $userCredential
      */
     protected $userCredential;
 
