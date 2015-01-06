@@ -1,6 +1,10 @@
 ## Snaggle
 
 [![Build Status](https://travis-ci.org/mfrost503/Snaggle.svg?branch=master)](https://travis-ci.org/mfrost503/Snaggle)
+[![Scrutinizer Code
+Quality](https://scrutinizer-ci.com/g/mfrost503/Snaggle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mfrost503/Snaggle/?branch=master)
+[![Build
+Status](https://scrutinizer-ci.com/g/mfrost503/Snaggle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mfrost503/Snaggle/build-status/master)
 
 Snaggle is an OAuth 1 Client Library that can be used to generate signatures and
 the appropriate OAuth 1 Headers. While OAuth 2.0 is suggested for building a new API, there are still plenty of popular services that use OAuth 1.0. 
