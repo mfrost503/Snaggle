@@ -16,7 +16,7 @@ class Header
     /**
      * The signature that is going to bring most of the components in
      *
-     * @var \Snaggle\Client\Signatures\Signature $signature
+     * @var \Snaggle\Client\Signatures\SignatureInterface $signature
      */
     private $signature;
 
@@ -57,7 +57,7 @@ class Header
     }
 
     /**
-     * @param SignatureInterface $signature
+     * @param \Snaggle\Client\Signatures\SignatureInterface $signature
      *
      * Set the signature object
      */
