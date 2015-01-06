@@ -137,7 +137,7 @@ use \Snaggle\Client\Header\Header;
 $consumer = new ConsumerCredentials();
 $consumer->setIdentifier('CONSUMER KEY');
 $consumer->setSecret('CONSUMER SECRET');
-$access = AccessCredentials();
+$access = new AccessCredentials();
 if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
 
     $signature = new HmacSha1($consumer, $access);
