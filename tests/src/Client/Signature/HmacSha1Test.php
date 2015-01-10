@@ -15,6 +15,21 @@ use Snaggle\Client\Credentials\AccessCredentials;
 class HmacSha1Test extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var ConsumerCredentials
+     */
+    private $consumer;
+
+    /**
+     * @var AccessCredentials
+     */
+    private $user;
+
+    /**
+     * @var HmacSha1
+     */
+    private $signature;
+
+    /**
      * Setup
      */
     public function setUp()
