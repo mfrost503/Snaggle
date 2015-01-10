@@ -81,7 +81,6 @@ class HmacSha1 extends Signature implements SignatureInterface
                 $baseString .= '%26' . $key .rawurlencode('=') . rawurlencode($value);
             }
         }
-        //return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
         return $baseString;
     }
 
