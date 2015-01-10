@@ -1,5 +1,7 @@
 <?php
 namespace Snaggle\Tests\Client\Header;
+
+use Snaggle\Client\Header\Header;
 use Snaggle\Client\Signatures\HmacSha1;
 use Snaggle\Client\Signatures\Plaintext;
 use Snaggle\Client\Credentials\ConsumerCredentials;

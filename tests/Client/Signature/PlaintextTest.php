@@ -2,6 +2,7 @@
 namespace Snaggle\Tests\Client\Signatures;
 use Snaggle\Client\Credentials\AccessCredentials;
 use Snaggle\Client\Credentials\ConsumerCredentials;
+use Snaggle\Client\Signatures\Plaintext;
 
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
