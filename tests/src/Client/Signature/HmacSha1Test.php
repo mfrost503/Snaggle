@@ -17,7 +17,7 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
     /**
      * Setup
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('ABCDEFG');
@@ -32,7 +32,7 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
     /**
      * Tear Down
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->user);
         unset($this->consumer);
