@@ -68,7 +68,7 @@ class HmacSha1 extends Signature implements SignatureInterface
             unset($oauthParams['oauth_verifier']);
         }
 
-        foreach($oauthParams as $key => $value) {
+        foreach ($oauthParams as $key => $value) {
             $tempArray[] = $key . '=' . rawurlencode($value);
         }
         $parsedResource = parse_url($this->resourceURL);
@@ -128,4 +128,3 @@ class HmacSha1 extends Signature implements SignatureInterface
         $this->include_empty_token = $value;
     }
 }
-

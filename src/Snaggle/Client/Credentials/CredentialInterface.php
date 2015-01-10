@@ -17,7 +17,7 @@ interface CredentialInterface
     /**
      * getIdentifier method to return the identifying value of the credential
      *
-     * @return string 
+     * @return string
      */
     public function getIdentifier();
 

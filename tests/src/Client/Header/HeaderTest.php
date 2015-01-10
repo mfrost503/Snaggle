@@ -1,10 +1,10 @@
 <?php
 namespace Snaggle\Client\Header;
+
 use Snaggle\Client\Signatures\HmacSha1;
 use Snaggle\Client\Signatures\Plaintext;
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
-
 
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
@@ -15,7 +15,7 @@ use Snaggle\Client\Credentials\AccessCredentials;
  *
  * Tests for the header functionality
  */
-Class HeaderTest extends \PHPUnit_Framework_TestCase
+class HeaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Set up - runs prior to each test

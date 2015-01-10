@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\Client\Header;
+
 use \Snaggle\Client\Signatures\SignatureInterface;
 
 /**
@@ -25,7 +26,7 @@ class Header
      *
      * @return string
      */
-    public function createAuthorizationHeader($includePrefix=false)
+    public function createAuthorizationHeader($includePrefix = false)
     {
         $headerParams = array(
             'oauth_signature' => $this->signature->sign(),
@@ -47,7 +48,7 @@ class Header
         $tempArray = array();
         ksort($headerParams);
 
-        foreach($headerParams as $key => $value) {
+        foreach ($headerParams as $key => $value) {
             $tempArray[] = $key . '="' . rawurlencode($value) . '"';
         }
 

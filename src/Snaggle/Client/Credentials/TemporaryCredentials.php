@@ -15,7 +15,7 @@ class TemporaryCredentials
 {
     /**
      * The OAuth token that is provided after authorization
-     * 
+     *
      * @var string $identifier
      */
     private $identifier = '';

@@ -1,5 +1,6 @@
 <?php
 namespace Snaggle\Client\Signatures;
+
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
 
@@ -148,4 +149,3 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($this->signature->sign(), 'The signature was empty');
     }
 }
-
