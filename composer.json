@@ -20,5 +20,10 @@
         "psr-0": {
             "Snaggle" : "src/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Snaggle\\Tests\\": "tests/"
+        }
     }
 }
