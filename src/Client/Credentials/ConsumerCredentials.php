@@ -17,7 +17,7 @@ class ConsumerCredentials implements CredentialInterface
     /**
      * The public API key that is assigned at the creation of the application
      *
-     * @var $key string
+     * @var $identifier string
      */
     private $identifier = '';
 
@@ -41,7 +41,7 @@ class ConsumerCredentials implements CredentialInterface
     /**
      * Method to set the identifying property from the credential
      *
-     * @param string $key
+     * @param string $identifier
      */
     public function setIdentifier($identifier)
     {
