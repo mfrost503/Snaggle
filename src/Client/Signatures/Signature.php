@@ -8,14 +8,14 @@ namespace Snaggle\Client\Signatures;
  * @package Snaggle
  * @subpackage Client
  *
- * Base functionality for the signatures, including all the 
+ * Base functionality for the signatures, including all the
  * properties and accessor methods
  */
 class Signature
 {
     /**
      * Value for the nonce
-     *                   
+     *
      * @var string $nonce
      */
     protected $nonce = '';
@@ -97,13 +97,12 @@ class Signature
     public function __construct(
         \Snaggle\Client\Credentials\CredentialInterface $consumerCredential,
         \Snaggle\Client\Credentials\CredentialInterface $userCredential
-    )
-    {
+    ) {
         $this->consumerCredential = $consumerCredential;
         $this->userCredential = $userCredential;
     }
 
-   /**
+    /**
     * Method for retrieving HTTP Verb
     *
     * @return string
@@ -131,7 +130,7 @@ class Signature
             throw new \InvalidArgumentException('Provided method not allowed');
         }
         $this->httpMethod = strtoupper($method);
-		return $this;
+        return $this;
     }
 
     /**
@@ -278,7 +277,7 @@ class Signature
     }
 
     /**
-     * Method to set the POST FIELDS or data of a post request, this may be required in your 
+     * Method to set the POST FIELDS or data of a post request, this may be required in your
      * base string
      *
      * @param array $postFields

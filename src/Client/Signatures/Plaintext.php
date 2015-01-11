@@ -6,7 +6,7 @@ namespace Snaggle\Client\Signatures;
  * @license http://opensource.org/licenses/MIT MIT
  * @copyright (c) 2014
  * @package Snaggle
- * @subpackage Client 
+ * @subpackage Client
  *
  * Plaintext signature method for OAuth 1 clients, important to note
  * this should only be used when there is no other way to authenticate
@@ -28,5 +28,4 @@ class Plaintext extends Signature implements SignatureInterface
     {
         return rawurlencode($this->getConsumer()->getSecret()) . '&'. rawurlencode($this->getUser()->getSecret());
     }
-
 }

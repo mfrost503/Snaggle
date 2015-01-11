@@ -9,7 +9,7 @@ namespace Snaggle\Client\Credentials;
  * @license http://opensource.org/licenses/MIT MIT
  *
  * This will store the temporary credentials that are sent back in the first
- * step of the token exchange. These are short-lived credentials and will 
+ * step of the token exchange. These are short-lived credentials and will
  * expire if they aren't exchanged for Access Credentials
  */
 class RequestCredentials implements Credential

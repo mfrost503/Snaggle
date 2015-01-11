@@ -68,20 +68,19 @@ class HmacSha1 extends Signature implements SignatureInterface
             unset($oauthParams['oauth_verifier']);
         }
 
-        foreach($oauthParams as $key => $value) {
+        foreach ($oauthParams as $key => $value) {
             $tempArray[] = $key . '=' . rawurlencode($value);
         }
-        $parsedResource = parse_url($this->resourceURL);
+        $parsedUrl = parse_url($this->resourceURL);
         $baseString = $this->httpMethod .'&';
-        $baseString .= rawurlencode($parsedResource['scheme'] . '://' . $parsedResource['host'] . $parsedResource['path']);
-        $baseString .= (isset($parsedResource['query'])) ? '&' . rawurlencode($parsedResource['query']) . '%26' : '&';
+        $baseString .= rawurlencode($parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path']);
+        $baseString .= (isset($parsedUrl['query'])) ? '&' . rawurlencode($parsedUrl['query']) . '%26' : '&';
         $baseString .= rawurlencode(implode('&', $tempArray));
         if (!empty($this->postFields)) {
             foreach ($this->postFields as $key => $value) {
                 $baseString .= '%26' . $key .rawurlencode('=') . rawurlencode($value);
             }
         }
-        //return $this->httpMethod . '&' . rawurlencode($this->resourceURL) . '&' . rawurlencode(implode('&', $tempArray));
         return $baseString;
     }
 
@@ -128,4 +127,3 @@ class HmacSha1 extends Signature implements SignatureInterface
         $this->include_empty_token = $value;
     }
 }
-
