@@ -20,6 +20,26 @@ use Snaggle\Client\Credentials\AccessCredentials;
 Class HeaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var ConsumerCredentials
+     */
+    private $consumer;
+
+    /**
+     * @var AccessCredentials
+     */
+    private $user;
+
+    /**
+     * @var HmacSha1
+     */
+    private $signature;
+
+    /**
+     * @var Plaintext
+     */
+    private $plaintext;
+
+    /**
      * Set up - runs prior to each test
      */
     public function setUp()
