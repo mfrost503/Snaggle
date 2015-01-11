@@ -16,6 +16,16 @@ use Snaggle\Client\Signatures\Plaintext;
 class PlaintextTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var ConsumerCredentials
+     */
+    private $consumer;
+
+    /**
+     * @var AccessCredentials
+     */
+    private $user;
+
+    /**
      * Setup
      */
     public function setUp()
