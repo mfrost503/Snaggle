@@ -7,7 +7,6 @@ use Snaggle\Client\Signatures\Plaintext;
 use Snaggle\Client\Credentials\ConsumerCredentials;
 use Snaggle\Client\Credentials\AccessCredentials;
 
-
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright Copyright (c) 2014
@@ -17,7 +16,7 @@ use Snaggle\Client\Credentials\AccessCredentials;
  *
  * Tests for the header functionality
  */
-Class HeaderTest extends \PHPUnit_Framework_TestCase
+class HeaderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ConsumerCredentials

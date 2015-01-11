@@ -25,5 +25,8 @@
         "psr-4": {
             "Snaggle\\Tests\\": "tests/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~2.1"
     }
 }

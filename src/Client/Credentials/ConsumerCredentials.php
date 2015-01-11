@@ -9,7 +9,7 @@ namespace Snaggle\Client\Credentials;
  * @license http://opensource.org/licenses/MIT MIT
  *
  * A class to represent the credentials of the consuming service provider,
- * these are the credentials that are assigned when an API application 
+ * these are the credentials that are assigned when an API application
  * is created
  */
 class ConsumerCredentials implements CredentialInterface
