@@ -41,7 +41,7 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up - runs prior to each test
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('CONSUMER');
@@ -58,7 +58,7 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
     /**
      * Tear down - runs after each test
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->consumer);
         unset($this->user);

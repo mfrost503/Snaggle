@@ -29,7 +29,7 @@ class PlaintextTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->consumer = new ConsumerCredentials();
         $this->consumer->setIdentifier('ABCDEFG');
@@ -43,7 +43,7 @@ class PlaintextTest extends \PHPUnit_Framework_TestCase
     /**
      * Tear down
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->consumer);
         unset($this->user);
