@@ -7,8 +7,32 @@ use Snaggle\Client\Credentials\RequestCredentials;
 
 class RequestCredentialsTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var RequestCredentials
+     */
+    private $credentials;
+
+    protected function setUp()
+    {
+        $this->credentials = new RequestCredentials();
+    }
+
+    protected function tearDown()
+    {
+        unset($this->credentials);
+    }
+
     public function testCanInstantiateClass()
     {
         new RequestCredentials();
+    }
+
+    public function testCanSetAndGetIdentifier()
+    {
+        $identifier = 'foo';
+
+        $this->credentials->setIdentifier($identifier);
+
+        $this->assertSame($identifier, $this->credentials->getIdentifier());
     }
 }
