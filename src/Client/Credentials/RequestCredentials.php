@@ -46,7 +46,7 @@ class RequestCredentials implements CredentialInterface
      */
     public function setIdentifier($identifier)
     {
-        $this->identifer = $identifier;
+        $this->identifier = $identifier;
     }
 
     /**
