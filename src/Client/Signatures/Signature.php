@@ -1,6 +1,8 @@
 <?php
 namespace Snaggle\Client\Signatures;
 
+use Snaggle\Client\Credentials;
+
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
  * @copyright (c) 2014
@@ -51,14 +53,14 @@ class Signature
     /**
      * Instance of consumer credential
      *
-     * @var \Snaggle\Client\Credentials\CredentialInterface $consumerCredential
+     * @var Credentials\CredentialInterface $consumerCredential
      */
     protected $consumerCredential;
 
     /**
      * Instance of user credentials
      *
-     * @var \Snaggle\Client\Credentials\CredentialInterface $userCredential
+     * @var Credentials\CredentialInterface $userCredential
      */
     protected $userCredential;
 
@@ -91,12 +93,12 @@ class Signature
     /**
      * Constructor
      *
-     * @param \Snaggle\Client\Credentials\CredentialInterface $consumerCredential
-     * @param \Snaggle\Client\Credentials\CredentialInterface $userCredential
+     * @param Credentials\CredentialInterface $consumerCredential
+     * @param Credentials\CredentialInterface $userCredential
      */
     public function __construct(
-        \Snaggle\Client\Credentials\CredentialInterface $consumerCredential,
-        \Snaggle\Client\Credentials\CredentialInterface $userCredential
+        Credentials\CredentialInterface $consumerCredential,
+        Credentials\CredentialInterface $userCredential
     ) {
         $this->consumerCredential = $consumerCredential;
         $this->userCredential = $userCredential;
@@ -259,7 +261,7 @@ class Signature
     /**
      * Method for retrieving the consumer
      *
-     * @return \Snaggle\Client\Credentials\CredentialInterface
+     * @return Credentials\CredentialInterface
      */
     public function getConsumer()
     {
@@ -269,7 +271,7 @@ class Signature
     /**
      * Method for retrieving the user credentials
      *
-     * @return \Snaggle\Client\Credentials\CredentialInterface
+     * @return Credentials\CredentialInterface
      */
     public function getUser()
     {
