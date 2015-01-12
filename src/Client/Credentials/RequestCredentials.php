@@ -12,7 +12,7 @@ namespace Snaggle\Client\Credentials;
  * step of the token exchange. These are short-lived credentials and will
  * expire if they aren't exchanged for Access Credentials
  */
-class RequestCredentials implements Credential
+class RequestCredentials implements CredentialInterface
 {
     /**
      * The identifier for the Request Credential
