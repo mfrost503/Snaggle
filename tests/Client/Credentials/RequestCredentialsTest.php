@@ -27,6 +27,12 @@ class RequestCredentialsTest extends PHPUnit_Framework_TestCase
         new RequestCredentials();
     }
 
+    public function testDefaults()
+    {
+        $this->assertSame('', $this->credentials->getIdentifier());
+        $this->assertSame('', $this->credentials->getSecret());
+    }
+
     public function testCanSetAndGetIdentifier()
     {
         $identifier = 'foo';
@@ -34,5 +40,14 @@ class RequestCredentialsTest extends PHPUnit_Framework_TestCase
         $this->credentials->setIdentifier($identifier);
 
         $this->assertSame($identifier, $this->credentials->getIdentifier());
+    }
+
+    public function testCanSetAndGetSecret()
+    {
+        $secret = 'bar';
+
+        $this->credentials->setSecret($secret);
+
+        $this->assertSame($secret, $this->credentials->getSecret());
     }
 }
