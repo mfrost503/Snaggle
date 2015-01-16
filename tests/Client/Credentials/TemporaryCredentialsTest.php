@@ -8,6 +8,6 @@ class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
 {
     public function testCanAutoloadClass()
     {
-        $this->assertTrue(class_exists('Snaggle\Oauth1\Client\Credentials\TemporaryCredentials'));
+        $this->assertTrue(class_exists('Snaggle\Client\Credentials\TemporaryCredentials'));
     }
 }
