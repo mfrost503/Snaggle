@@ -22,11 +22,6 @@ class RequestCredentialsTest extends PHPUnit_Framework_TestCase
         unset($this->credentials);
     }
 
-    public function testCanInstantiateClass()
-    {
-        new RequestCredentials();
-    }
-
     public function testDefaults()
     {
         $this->assertSame('', $this->credentials->getIdentifier());
