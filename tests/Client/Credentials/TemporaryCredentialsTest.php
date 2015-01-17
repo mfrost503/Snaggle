@@ -3,9 +3,7 @@
 namespace Snaggle\Tests\Client\Credentials;
 
 use PHPUnit_Framework_TestCase;
-use Snaggle\OAuth1\Client\Credentials\TemporaryCredentials;
-
-require_once __DIR__ . '/../../../src/Client/Credentials/TemporaryCredentials.php';
+use Snaggle\Client\Credentials\TemporaryCredentials;
 
 class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
 {
@@ -59,5 +57,10 @@ class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
         $this->credentials->setVerifier($verifier);
 
         $this->assertSame($verifier, $this->credentials->getVerifier());
+	}
+
+    public function testCanAutoloadClass()
+    {
+        $this->assertTrue(class_exists('Snaggle\Client\Credentials\TemporaryCredentials'));
     }
 }
