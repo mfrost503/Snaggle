@@ -12,7 +12,7 @@ namespace Snaggle\Client\Credentials;
  * step of the token exchange. These are short-lived credentials and will
  * expire if they aren't exchanged for Access Credentials
  */
-class RequestCredentials implements Credential
+class RequestCredentials implements CredentialInterface
 {
     /**
      * The identifier for the Request Credential
@@ -29,6 +29,16 @@ class RequestCredentials implements Credential
     private $secret = '';
 
     /**
+     * @param string $identifier
+     * @param string $secret
+     */
+    public function __construct($identifier = '', $secret = '')
+    {
+        $this->identifier = $identifier;
+        $this->secret = $secret;
+    }
+
+    /**
      * Method to retrieve the identifier associated with the request
      * credentials
      *
@@ -42,11 +52,13 @@ class RequestCredentials implements Credential
     /**
      * Method to set the identifier for the request credential
      *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
+     *
      * @param string $identifier
      */
     public function setIdentifier($identifier)
     {
-        $this->identifer = $identifier;
+        $this->identifier = $identifier;
     }
 
     /**
@@ -61,6 +73,8 @@ class RequestCredentials implements Credential
 
     /**
      * Method to set the secret for the request credential
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $secret
      */

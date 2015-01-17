@@ -29,6 +29,16 @@ class ConsumerCredentials implements CredentialInterface
     private $secret = '';
 
     /**
+     * @param string $identifier
+     * @param string $secret
+     */
+    public function __construct($identifier = '', $secret = '')
+    {
+        $this->identifier = $identifier;
+        $this->secret = $secret;
+    }
+
+    /**
      * Method to retrieve the identifying property from the credential
      *
      * @return string
@@ -40,6 +50,8 @@ class ConsumerCredentials implements CredentialInterface
 
     /**
      * Method to set the identifying property from the credential
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $identifier
      */
@@ -60,6 +72,8 @@ class ConsumerCredentials implements CredentialInterface
 
     /**
      * Method to set the secret for this credential
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $secret
      */

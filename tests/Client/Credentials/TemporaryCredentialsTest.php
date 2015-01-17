@@ -1,0 +1,63 @@
+<?php
+
+namespace Snaggle\Tests\Client\Credentials;
+
+use PHPUnit_Framework_TestCase;
+use Snaggle\OAuth1\Client\Credentials\TemporaryCredentials;
+
+require_once __DIR__ . '/../../../src/Client/Credentials/TemporaryCredentials.php';
+
+class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @var TemporaryCredentials
+     */
+    private $credentials;
+
+    protected function setUp()
+    {
+        $this->credentials = new TemporaryCredentials();
+    }
+
+    public function testConstructorSetsValues()
+    {
+        $identifier = 'foo';
+        $secret = 'bar';
+
+        $credentials = new TemporaryCredentials(
+            $identifier,
+            $secret
+        );
+
+        $this->assertSame($identifier, $credentials->getIdentifier());
+        $this->assertSame($secret, $credentials->getVerifier());
+    }
+
+    protected function tearDown()
+    {
+        unset($this->credentials);
+    }
+
+    public function testDefaults()
+    {
+        $this->assertSame('', $this->credentials->getIdentifier());
+    }
+
+    public function testCanSetAndGetIdentifier()
+    {
+        $identifier = 'foo';
+
+        $this->credentials->setIdentifier($identifier);
+
+        $this->assertSame($identifier, $this->credentials->getIdentifier());
+    }
+
+    public function testCanSetAndGetVerifier()
+    {
+        $verifier = 'bar';
+
+        $this->credentials->setVerifier($verifier);
+
+        $this->assertSame($verifier, $this->credentials->getVerifier());
+    }
+}
