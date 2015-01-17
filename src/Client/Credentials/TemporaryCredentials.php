@@ -1,5 +1,5 @@
 <?php
-namespace Snaggle\OAuth1\Client\Credentials;
+namespace Snaggle\Client\Credentials;
 
 /**
  * @author Matt Frost <mfrost.design@gmail.com>
