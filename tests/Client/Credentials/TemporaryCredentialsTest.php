@@ -19,6 +19,20 @@ class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
         $this->credentials = new TemporaryCredentials();
     }
 
+    public function testConstructorSetsValues()
+    {
+        $identifier = 'foo';
+        $secret = 'bar';
+
+        $credentials = new TemporaryCredentials(
+            $identifier,
+            $secret
+        );
+
+        $this->assertSame($identifier, $credentials->getIdentifier());
+        $this->assertSame($secret, $credentials->getVerifier());
+    }
+
     protected function tearDown()
     {
         unset($this->credentials);

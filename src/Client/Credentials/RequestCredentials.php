@@ -29,6 +29,16 @@ class RequestCredentials implements CredentialInterface
     private $secret = '';
 
     /**
+     * @param string $identifier
+     * @param string $secret
+     */
+    public function __construct($identifier = '', $secret = '')
+    {
+        $this->identifier = $identifier;
+        $this->secret = $secret;
+    }
+
+    /**
      * Method to retrieve the identifier associated with the request
      * credentials
      *

@@ -28,6 +28,16 @@ class TemporaryCredentials
     private $verifier = '';
 
     /**
+     * @param string $identifier
+     * @param string $verifier
+     */
+    public function __construct($identifier = '', $verifier = '')
+    {
+        $this->identifier = $identifier;
+        $this->verifier = $verifier;
+    }
+
+    /**
      * Method to set the temporary token
      *
      * @param string $identifier

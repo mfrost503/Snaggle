@@ -22,6 +22,21 @@ class ConsumerCredentialsTest extends PHPUnit_Framework_TestCase
         unset($this->credentials);
     }
 
+    public function testConstructorSetsValues()
+    {
+        $identifier = 'foo';
+        $secret = 'bar';
+
+        $credentials = new ConsumerCredentials(
+            $identifier,
+            $secret
+        );
+
+        $this->assertSame($identifier, $credentials->getIdentifier());
+        $this->assertSame($secret, $credentials->getSecret());
+    }
+
+
     public function testDefaults()
     {
         $this->assertSame('', $this->credentials->getIdentifier());

@@ -25,6 +25,16 @@ class AccessCredentials implements CredentialInterface
     private $secret;
 
     /**
+     * @param string $identifier
+     * @param string $secret
+     */
+    public function __construct($identifier = null, $secret = null)
+    {
+        $this->identifier = $identifier;
+        $this->secret = $secret;
+    }
+
+    /**
      * Method to set the identifier
      *
      * @param string $identifier
