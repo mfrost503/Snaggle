@@ -52,6 +52,8 @@ class RequestCredentials implements CredentialInterface
     /**
      * Method to set the identifier for the request credential
      *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
+     *
      * @param string $identifier
      */
     public function setIdentifier($identifier)
@@ -71,6 +73,8 @@ class RequestCredentials implements CredentialInterface
 
     /**
      * Method to set the secret for the request credential
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $secret
      */

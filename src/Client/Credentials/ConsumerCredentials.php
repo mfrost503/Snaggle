@@ -51,6 +51,8 @@ class ConsumerCredentials implements CredentialInterface
     /**
      * Method to set the identifying property from the credential
      *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
+     *
      * @param string $identifier
      */
     public function setIdentifier($identifier)
@@ -70,6 +72,8 @@ class ConsumerCredentials implements CredentialInterface
 
     /**
      * Method to set the secret for this credential
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $secret
      */

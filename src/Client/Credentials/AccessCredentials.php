@@ -37,6 +37,8 @@ class AccessCredentials implements CredentialInterface
     /**
      * Method to set the identifier
      *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
+     *
      * @param string $identifier
      */
     public function setIdentifier($identifier)
@@ -56,6 +58,8 @@ class AccessCredentials implements CredentialInterface
 
     /**
      * Method to set the secret for this identifier
+     *
+     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
      *
      * @param string $secret
      */
