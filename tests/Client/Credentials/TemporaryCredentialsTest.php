@@ -57,7 +57,7 @@ class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
         $this->credentials->setVerifier($verifier);
 
         $this->assertSame($verifier, $this->credentials->getVerifier());
-	}
+    }
 
     public function testCanAutoloadClass()
     {
