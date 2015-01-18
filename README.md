@@ -13,7 +13,7 @@ the appropriate OAuth 1 Headers. While OAuth 2.0 is suggested for building a new
 Snaggle should be installed via composer:
 ```
 "require": {
-    "mfrost503/snaggle": "0.1.1"
+    "mfrost503/snaggle": "0.3.0"
 }
 ```
 
