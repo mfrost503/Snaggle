@@ -76,11 +76,10 @@ class HmacSha1 extends Signature implements SignatureInterface
         $baseString .= rawurlencode($parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path']);
         $baseString .= (isset($parsedUrl['query'])) ? '&' . rawurlencode($parsedUrl['query']) . '%26' : '&';
         $baseString .= rawurlencode(implode('&', $tempArray));
-        if (!empty($this->postFields)) {
-            foreach ($this->postFields as $key => $value) {
-                $baseString .= '%26' . $key .rawurlencode('=') . rawurlencode($value);
-            }
-        }
+
+        array_walk($this->postFields, function($value, $key) use (&$baseString){
+            $baseString .= '%26' . $key . rawurlencode('=' . $value);
+        });
         return $baseString;
     }
 

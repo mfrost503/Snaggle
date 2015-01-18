@@ -164,4 +164,19 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $this->signature->setResourceURL('http://example.com/api/user');
         $this->assertNotEmpty($this->signature->sign(), 'The signature was empty');
     }
+
+    /**
+     * @test
+     *
+     * Ensure Post Fields are added to the base string correctly
+     */
+    public function ensurePostFieldsAreAddedToBaseString()
+    {
+        $this->signature->setHttpMethod('post');
+        $this->signature->setResourceURL('http://example.com/api/user');
+        $this->signature->setPostFields(['status' => rawurlencode('This is a test')]);
+        $expectedString = '%26status%3DThis%2520is%2520a%2520test';
+        $baseString = $this->signature->createBaseString();
+        $this->assertTrue(strpos($baseString, $expectedString) > -1, 'Expected String was not found in the base string');
+    }
 }
