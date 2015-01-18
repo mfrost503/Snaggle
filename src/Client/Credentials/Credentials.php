@@ -26,7 +26,7 @@ abstract class Credentials
     /**
      * Return the identifier property
      *
-     * @return string the identifier 
+     * @return string the identifier
      */
     public function getIdentifier()
     {
