@@ -12,17 +12,17 @@ namespace Snaggle\Client\Credentials;
  * these are the credentials that are assigned when a successful
  * token retrieval has been made
  */
-class AccessCredentials implements CredentialInterface
+class AccessCredentials extends Credentials implements CredentialInterface
 {
     /**
      * Property for the identifying token
      */
-    private $identifier = '';
+    protected $identifier = '';
 
     /**
      * Property for the secret
      */
-    private $secret = '';
+    protected $secret = '';
 
     /**
      * @param string $identifier
@@ -32,49 +32,5 @@ class AccessCredentials implements CredentialInterface
     {
         $this->identifier = $identifier;
         $this->secret = $secret;
-    }
-
-    /**
-     * Method to set the identifier
-     *
-     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
-     *
-     * @param string $identifier
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
-     * Method to retrieve the identifier
-     *
-     * @return string identifier for this credential
-     */
-    public function getIdentifier()
-    {
-        return $this->identifier;
-    }
-
-    /**
-     * Method to set the secret for this identifier
-     *
-     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
-     *
-     * @param string $secret
-     */
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-    }
-
-    /**
-     * Method to retrieve the secret
-     *
-     * @return string $secret
-     */
-    public function getSecret()
-    {
-        return $this->secret;
     }
 }
