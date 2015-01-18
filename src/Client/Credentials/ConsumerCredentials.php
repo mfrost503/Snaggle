@@ -15,20 +15,6 @@ namespace Snaggle\Client\Credentials;
 class ConsumerCredentials extends Credentials implements CredentialInterface
 {
     /**
-     * The public API key that is assigned at the creation of the application
-     *
-     * @var $identifier string
-     */
-    protected $identifier = '';
-
-    /**
-     * The API secret that is assigned at the creation of the application
-     *
-     * @var $secret string
-     */
-    protected $secret = '';
-
-    /**
      * @param string $identifier
      * @param string $secret
      */

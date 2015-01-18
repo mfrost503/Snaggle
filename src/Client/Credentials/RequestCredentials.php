@@ -15,20 +15,6 @@ namespace Snaggle\Client\Credentials;
 class RequestCredentials extends Credentials implements CredentialInterface
 {
     /**
-     * The identifier for the Request Credential
-     *
-     * @var string $identifier
-     */
-    protected $identifier = '';
-
-    /**
-     * The secret for the Request Credential
-     *
-     * @var string $secret
-     */
-    protected $secret = '';
-
-    /**
      * @param string $identifier
      * @param string $secret
      */

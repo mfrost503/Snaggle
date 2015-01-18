@@ -10,6 +10,20 @@ namespace Snaggle\Client\Credentials;
 abstract class Credentials
 {
     /**
+     * The public API key that is assigned at the creation of the application
+     *
+     * @var $identifier string
+     */
+    protected $identifier = '';
+
+    /**
+     * The API secret that is assigned at the creation of the application
+     *
+     * @var $secret string
+     */
+    protected $secret = '';
+
+    /**
      * Return the identifier property
      *
      * @return string the identifier 

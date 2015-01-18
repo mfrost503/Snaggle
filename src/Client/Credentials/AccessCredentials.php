@@ -15,16 +15,6 @@ namespace Snaggle\Client\Credentials;
 class AccessCredentials extends Credentials implements CredentialInterface
 {
     /**
-     * Property for the identifying token
-     */
-    protected $identifier = '';
-
-    /**
-     * Property for the secret
-     */
-    protected $secret = '';
-
-    /**
      * @param string $identifier
      * @param string $secret
      */
