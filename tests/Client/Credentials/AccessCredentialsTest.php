@@ -38,8 +38,8 @@ class AccessCredentialsTest extends PHPUnit_Framework_TestCase
 
     public function testDefaults()
     {
-        $this->assertNull($this->credentials->getIdentifier());
-        $this->assertNull($this->credentials->getSecret());
+        $this->assertSame('', $this->credentials->getIdentifier());
+        $this->assertSame('', $this->credentials->getSecret());
     }
 
     public function testCanSetAndGetIdentifier()

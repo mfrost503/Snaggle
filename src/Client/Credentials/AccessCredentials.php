@@ -17,18 +17,18 @@ class AccessCredentials implements CredentialInterface
     /**
      * Property for the identifying token
      */
-    private $identifier;
+    private $identifier = '';
 
     /**
      * Property for the secret
      */
-    private $secret;
+    private $secret = '';
 
     /**
      * @param string $identifier
      * @param string $secret
      */
-    public function __construct($identifier = null, $secret = null)
+    public function __construct($identifier = '', $secret = '')
     {
         $this->identifier = $identifier;
         $this->secret = $secret;
