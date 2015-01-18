@@ -68,16 +68,17 @@ class HmacSha1 extends Signature implements SignatureInterface
             unset($oauthParams['oauth_verifier']);
         }
 
-        foreach ($oauthParams as $key => $value) {
+        array_walk($oauthParams, function($value, $key) use (&$tempArray) {
             $tempArray[] = $key . '=' . rawurlencode($value);
-        }
+        });
+
         $parsedUrl = parse_url($this->resourceURL);
         $baseString = $this->httpMethod .'&';
         $baseString .= rawurlencode($parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path']);
         $baseString .= (isset($parsedUrl['query'])) ? '&' . rawurlencode($parsedUrl['query']) . '%26' : '&';
         $baseString .= rawurlencode(implode('&', $tempArray));
 
-        array_walk($this->postFields, function($value, $key) use (&$baseString){
+        array_walk($this->postFields, function($value, $key) use (&$baseString) {
             $baseString .= '%26' . $key . rawurlencode('=' . $value);
         });
         return $baseString;

@@ -177,6 +177,26 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $this->signature->setPostFields(['status' => rawurlencode('This is a test')]);
         $expectedString = '%26status%3DThis%2520is%2520a%2520test';
         $baseString = $this->signature->createBaseString();
-        $this->assertTrue(strpos($baseString, $expectedString) > -1, 'Expected String was not found in the base string');
+        $this->assertTrue(strpos($baseString, $expectedString) > -1, 'Expected String was not found in base string');
+    }
+
+    /**
+     * @test
+     *
+     * Ensure the base string has the required elements
+     */
+    public function ensureBaseStringFieldsArePresent()
+    {
+        $this->signature->setHttpMethod('post');
+        $this->signature->setResourceURL('http://example.com/api/user');
+        $this->signature->setTimestamp(104020507);
+        $this->signature->setNonce('NONCEBRO');
+        $baseString = rawurldecode($this->signature->createBaseString());
+        $array = [];
+        parse_str($baseString, $array);
+        $this->assertEquals($array['oauth_timestamp'], 104020507);
+        $this->assertEquals($array['oauth_nonce'], 'NONCEBRO');
+        $this->assertEquals($array['oauth_version'], 1.0);
+        $this->assertEquals($array['oauth_token'], '1234ABCD');
     }
 }
