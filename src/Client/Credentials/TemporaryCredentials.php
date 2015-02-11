@@ -38,18 +38,6 @@ class TemporaryCredentials
     }
 
     /**
-     * Method to set the temporary token
-     *
-     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
-     *
-     * @param string $identifier
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
      * Method to retrieve the temporary token
      *
      * @return string
@@ -57,18 +45,6 @@ class TemporaryCredentials
     public function getIdentifier()
     {
         return $this->identifier;
-    }
-
-    /**
-     * Method to set the verifier
-     *
-     * @deprecated Will be removed with 1.0.0, set values with constructor instead.
-     *
-     * @param string $verifier
-     */
-    public function setVerifier($verifier)
-    {
-        $this->verifier = $verifier;
     }
 
     /**

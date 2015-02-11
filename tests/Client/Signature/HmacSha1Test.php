@@ -36,13 +36,16 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->consumer = new ConsumerCredentials();
-        $this->consumer->setIdentifier('ABCDEFG');
-        $this->consumer->setSecret('SHHHHHHH');
+        $this->consumer = new ConsumerCredentials(
+            'ABCDEFG',
+            'SHHHHHHH'
+        );
 
-        $this->user = new AccessCredentials();
-        $this->user->setIdentifier('1234ABCD');
-        $this->user->setSecret('KEEPOUT');
+        $this->user = new AccessCredentials(
+            '1234ABCD',
+            'KEEPOUT'
+        );
+
         $this->signature = new HmacSha1($this->consumer, $this->user);
     }
 

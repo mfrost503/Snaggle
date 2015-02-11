@@ -7,21 +7,6 @@ use Snaggle\Client\Credentials\AccessCredentials;
 
 class AccessCredentialsTest extends PHPUnit_Framework_TestCase
 {
-    /**
-     * @var AccessCredentials
-     */
-    private $credentials;
-
-    protected function setUp()
-    {
-        $this->credentials = new AccessCredentials();
-    }
-
-    protected function tearDown()
-    {
-        unset($this->credentials);
-    }
-
     public function testConstructorSetsValues()
     {
         $identifier = 'foo';
@@ -36,27 +21,11 @@ class AccessCredentialsTest extends PHPUnit_Framework_TestCase
         $this->assertSame($secret, $credentials->getSecret());
     }
 
-    public function testDefaults()
+    public function testConstructorHasDefaultValues()
     {
-        $this->assertSame('', $this->credentials->getIdentifier());
-        $this->assertSame('', $this->credentials->getSecret());
-    }
+        $credentials = new AccessCredentials();
 
-    public function testCanSetAndGetIdentifier()
-    {
-        $identifier = 'foo';
-
-        $this->credentials->setIdentifier($identifier);
-
-        $this->assertSame($identifier, $this->credentials->getIdentifier());
-    }
-
-    public function testCanSetAndGetSecret()
-    {
-        $secret = 'bar';
-
-        $this->credentials->setSecret($secret);
-
-        $this->assertSame($secret, $this->credentials->getSecret());
+        $this->assertSame('', $credentials->getIdentifier());
+        $this->assertSame('', $credentials->getSecret());
     }
 }

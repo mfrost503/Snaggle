@@ -43,13 +43,15 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->consumer = new ConsumerCredentials();
-        $this->consumer->setIdentifier('CONSUMER');
-        $this->consumer->setSecret('CONSUMER_SECRET');
+        $this->consumer = new ConsumerCredentials(
+            'CONSUMER',
+            'CONSUMER_SECRET'
+        );
 
-        $this->user = new AccessCredentials();
-        $this->user->setIdentifier('ACCESS_TOKEN');
-        $this->user->setSecret('ACCESS_SECRET');
+        $this->user = new AccessCredentials(
+            'ACCESS_TOKEN',
+            'ACCESS_SECRET'
+        );
 
         $this->signature = new HmacSha1($this->consumer, $this->user);
         $this->plaintext = new Plaintext($this->consumer, $this->user);
