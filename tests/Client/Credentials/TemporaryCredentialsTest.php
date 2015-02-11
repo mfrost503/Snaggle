@@ -28,9 +28,4 @@ class TemporaryCredentialsTest extends PHPUnit_Framework_TestCase
         $this->assertSame('', $credentials->getIdentifier());
         $this->assertSame('', $credentials->getVerifier());
     }
-
-    public function testCanAutoloadClass()
-    {
-        $this->assertTrue(class_exists('Snaggle\Client\Credentials\TemporaryCredentials'));
-    }
 }
