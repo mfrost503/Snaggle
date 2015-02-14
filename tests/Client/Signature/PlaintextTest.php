@@ -31,13 +31,15 @@ class PlaintextTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->consumer = new ConsumerCredentials();
-        $this->consumer->setIdentifier('ABCDEFG');
-        $this->consumer->setSecret('THISISA');
+        $this->consumer = new ConsumerCredentials(
+            'ABCDEFG',
+            'THISISA'
+        );
 
-        $this->user = new AccessCredentials();
-        $this->user->setIdentifier('123ABC');
-        $this->user->setSecret('SECRETMESSAGE');
+        $this->user = new AccessCredentials(
+            '123ABC',
+            'SECRETMESSAGE'
+        );
     }
 
     /**

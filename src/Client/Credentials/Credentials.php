@@ -42,26 +42,4 @@ abstract class Credentials
     {
         return $this->secret;
     }
-
-    /**
-     * Set the identifier property
-     *
-     * @param string $identifier
-     * @deprecated Will be removed in 1.0.0 - please use constructor
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->identifier = $identifier;
-    }
-
-    /**
-     * Set the secret property
-     *
-     * @param string $secret
-     * @deprecated Will be removed in 1.0.0 - please use constructor
-     */
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-    }
 }
