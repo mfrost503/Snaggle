@@ -202,4 +202,21 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $this->assertEquals($array['oauth_version'], 1.0);
         $this->assertEquals($array['oauth_token'], '1234ABCD');
     }
+
+    /**
+     * @test
+     *
+     * Ensure empty callback and verifier don't get put into the base string
+     */
+    public function ensureEmptyVerifierAndCallbackAreRemoved()
+    {
+        $this->signature->setHttpMethod('post');
+        $this->signature->setResourceUrl('https://example.com/api/user');
+        $baseString = rawurldecode($this->signature->createBaseString());
+        $array = [];
+        parse_str($baseString, $array);
+        // might be an assertion to check for missing array key...    
+        $this->assertFalse(isset($array['oauth_verifier']));
+        $this->assertFalse(isset($array['oauth_callback']));
+    }
 }

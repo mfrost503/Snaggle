@@ -35,6 +35,7 @@ class HmacSha1 extends Signature implements SignatureInterface
         if ($this->timestamp === 0) {
             $this->setTimestamp();
         }
+
         $paramArray = array(
             'oauth_nonce' => $this->getNonce(),
             'oauth_callback' => $this->callback,
@@ -45,8 +46,8 @@ class HmacSha1 extends Signature implements SignatureInterface
             'oauth_version' => $this->version,
             'oauth_verifier' => $this->getVerifier()
         );
-        $baseString = $this->buildBaseString($paramArray);
-        return $baseString;
+
+        return $this->buildBaseString($paramArray);
     }
 
     /**
@@ -81,6 +82,7 @@ class HmacSha1 extends Signature implements SignatureInterface
         array_walk($this->postFields, function($value, $key) use (&$baseString) {
             $baseString .= '%26' . $key . rawurlencode('=' . $value);
         });
+
         return $baseString;
     }
 
