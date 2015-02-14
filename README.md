@@ -13,7 +13,7 @@ the appropriate OAuth 1 Headers. While OAuth 2.0 is suggested for building a new
 Snaggle should be installed via composer:
 ```
 "require": {
-    "mfrost503/snaggle": "0.3.0"
+    "mfrost503/snaggle": "1.0.0"
 }
 ```
 
@@ -28,13 +28,9 @@ use Snaggle\OAuth1\Client\Signatures\Plaintext;
 use Snaggle\OAuth1\Client\Header\Header;
 
 // first we need to represent our tokens, these should be stored securely
-$consumer = new ConsumerCredentials();
-$consumer->setIdentifer('CONSUMER_KEY');
-$consumer->setSecret('CONSUMER_SECRET');
+$consumer = new ConsumerCredentials('CONSUMER_KEY', 'CONSUMER_SECRET');
 
-$access = new AccessCredentials();
-$access->setIdentifier('ACCESS_TOKEN');
-$access->setSecret('ACCESS_SECRET');
+$access = new AccessCredentials('ACCESS_TOKEN', 'ACCESS_SECRET');
 
 $signature = new HmacSha1($consumer, $access)
     ->setResourceURL('https://api.example.com/v1/users')
@@ -138,9 +134,7 @@ use \Snaggle\Client\Credentials\AccessCredentials;
 use \Snaggle\Client\Signatures\HmacSha1;
 use \Snaggle\Client\Header\Header;
 
-$consumer = new ConsumerCredentials();
-$consumer->setIdentifier('CONSUMER KEY');
-$consumer->setSecret('CONSUMER SECRET');
+$consumer = new ConsumerCredentials('CONSUMER KEY', 'CONSUMER_SECRET');
 $access = new AccessCredentials();
 if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
 
