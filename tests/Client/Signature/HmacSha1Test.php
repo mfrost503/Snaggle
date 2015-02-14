@@ -215,7 +215,7 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $baseString = rawurldecode($this->signature->createBaseString());
         $array = [];
         parse_str($baseString, $array);
-        // might be an assertion to check for missing array key...    
+        // might be an assertion to check for missing array key...
         $this->assertFalse(isset($array['oauth_verifier']));
         $this->assertFalse(isset($array['oauth_callback']));
     }
