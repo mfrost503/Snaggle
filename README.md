@@ -155,7 +155,7 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     parse_str($res);
     header('Location: https://api.twitter.com/oauth/authorize?oauth_token=' . $oauth_token);
 
-}elseif(isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
+} else if(isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
     $access->setIdentifier($_GET['oauth_token']);
     $signature = new HmacSha1($consumer, $access);
     $signature->setHttpMethod('post')
