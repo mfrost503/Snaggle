@@ -219,4 +219,63 @@ class HmacSha1Test extends \PHPUnit_Framework_TestCase
         $this->assertFalse(isset($array['oauth_verifier']));
         $this->assertFalse(isset($array['oauth_callback']));
     }
+
+	/**
+	 * @test
+	 *
+	 * Test to ensure getEmptyToken returns correctly
+	 */
+	public function getEmptyTokenReturnsCorrectly()
+	{
+		$this->signature->setEmptyToken(false);
+		$this->assertFalse($this->signature->getEmptyToken());
+	}
+
+	/**
+	 * @test
+	 *
+	 * Ensure set empty token with non boolean value throws exception
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function setEmptyTokenWithBadParamThrowsException()
+	{
+		$this->signature->setEmptyToken('not a boolean');
+	}
+
+	/**
+	 * @test
+	 *
+	 * Ensure a resource can be set retrieved
+	 */
+	public function ensureResourceURLCanBeRetrieved()
+	{
+		$resource = 'http://example.com';
+		$this->signature->setResourceURL($resource);
+		$this->assertEquals($resource, $this->signature->getResourceURL());
+	}
+
+	/**
+	 * @test
+	 *
+	 * Ensure Post Fields can be retrieved
+	 */
+	public function ensurePostFieldsCanBeRetrieved()
+	{
+		$postFields = ['name' => 'Matt Frost'];
+		$this->signature->setPostFields($postFields);
+		$this->assertEquals($postFields, $this->signature->getPostFields());
+	}
+
+	/**
+	 * @test
+	 *
+	 * Ensure verifier can be set
+	 */
+	public function ensureVerifierCanBeSet()
+	{
+		$verifier = '12345abc';
+		$signature = $this->signature->setVerifier($verifier);
+		$this->assertEquals($verifier, $this->signature->getVerifier());
+		$this->assertSame($signature, $this->signature);
+	}
 }

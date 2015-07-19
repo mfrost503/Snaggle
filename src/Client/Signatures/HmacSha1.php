@@ -123,7 +123,7 @@ class HmacSha1 extends Signature implements SignatureInterface
      */
     public function setEmptyToken($value)
     {
-        if (!is_boolean($value)) {
+        if (!\is_bool($value)) {
             throw new \InvalidArgumentException("Value must been a boolean");
         }
         $this->include_empty_token = $value;
