@@ -96,7 +96,7 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
     {
         $this->signature->setHttpMethod('get');
         $this->signature->setResourceURL('https://example.com/api');
-		$this->signature->setVerifier('12345abc');
+        $this->signature->setVerifier('12345abc');
         $this->signature->setCallback('https://my.site/callback');
         $header = new Header();
         $header->setSignature($this->signature);
@@ -105,7 +105,7 @@ class HeaderTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('Authorization:', $headerString, 'Authorization prefix missing');
         $this->assertContains('oauth_version="1.0"', $headerString, 'OAuth version missing');
         $this->assertContains('oauth_signature_method="HMAC-SHA1"', $headerString, 'Signature method missing');
-		$this->assertContains('oauth_verifier="12345abc"', $headerString, 'Verifier Missing');
+        $this->assertContains('oauth_verifier="12345abc"', $headerString, 'Verifier Missing');
     }
 
     /**

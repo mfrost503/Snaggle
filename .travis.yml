@@ -9,5 +9,5 @@ before_script:
   - php composer.phar install
 install: composer install
 script:
-  - vendor/bin/phpcs --standard=PSR2 -p --ignore=vendor .
+  - vendor/bin/phpcs --standard=PSR2 -p --ignore=vendor,examples .
   - vendor/bin/phpunit
