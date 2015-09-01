@@ -97,7 +97,7 @@ $header = new Header();
 $header->setSignature($signature);
 $authorizationHeader = $header->createAuthorizationHeader();
 
-$client = new Guzzle\HttpClient();
+$client = new Client();
 $client->get('https://api.example.com/v1/users', [
 	'headers' => ['Authorization' => $authorizationHeader]
 ]);
@@ -133,6 +133,7 @@ use \Snaggle\Client\Credentials\ConsumerCredentials;
 use \Snaggle\Client\Credentials\AccessCredentials;
 use \Snaggle\Client\Signatures\HmacSha1;
 use \Snaggle\Client\Header\Header;
+use \GuzzleHttp\Client;
 
 $consumer = new ConsumerCredentials('CONSUMER KEY', 'CONSUMER_SECRET');
 $access = new AccessCredentials();
@@ -146,7 +147,7 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     $headers->setSignature($signature);
     $auth = $headers->createAuthorizationHeader();
 
-    $client = new \GuzzleHttp\Client();
+    $client = new Client();
     $response = $client->post('https://api.twitter.com/oauth/request_token', [
         'headers' => ['Authorization' => $auth]
     ]);
@@ -165,7 +166,7 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     $headers->setSignature($signature);
     $auth = $headers->createAuthorizationHeader();
 
-    $client = new \GuzzleHttp\Client();
+    $client = new Client();
     $response = $client->post('https://api.twitter.com/oauth/access_token', [
         'headers' => ['Authorization' => $auth],
         'body' => ['oauth_verifier' => $_GET['oauth_verifier']]
