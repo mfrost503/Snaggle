@@ -156,7 +156,7 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
     header('Location: https://api.twitter.com/oauth/authorize?oauth_token=' . $oauth_token);
 
 } else if(isset($_GET['oauth_token']) && isset($_GET['oauth_verifier'])) {
-    $access->setIdentifier($_GET['oauth_token']);
+    $access = new AccessCredentials($_GET['oauth_token']);
     $signature = new HmacSha1($consumer, $access);
     $signature->setHttpMethod('post')
               ->setResourceURL('https://api.twitter.com/oauth/access_token');
@@ -175,9 +175,8 @@ if (!isset($_GET['oauth_token']) && !isset($_GET['oauth_verifier'])) {
 
     // parse_str will create variables called $oauth_token and $oauth_token_secret
     parse_str($res);
-	$access->setIdentifier($oauth_token);
-	$access->setSecret($oauth_token_secret);
-
+    $token = $oauth_token;
+    $secret = $oauth_token_secret;
 	// You will need to persist these values at this point
 }
 ```
